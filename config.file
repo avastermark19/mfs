@@ -1,0 +1,9 @@
+WhichClan1 MFS	
+$CUTOFF_UNSAFE 12    # USED TO BE 5 !! ( BUT THIS IS NOT THE ACTUAL -- SEE BELOW )
+$CUTOFF_TMS  5      # used to be 6
+$CUTOFF_MEMBERS  4  # used to be 5
+$length 12    #from step6
+paramteter6
+setting 7
+setting 8
+
