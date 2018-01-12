@@ -83,7 +83,7 @@ print STDERR 'Making tree ... ', "\n";
 ###########################################################################################
 
 if($input[5] eq 'y') { 
-print STDERR 'Making cons ... ', "\n"; ` ./step5.pl > /dev/null 2>&1 ` 
+print STDERR 'Making cons ... ', "\n"; ` ./step5.pl > /dev/null 2>&1 ` ;
 ` rm -rf BACKUP_CONS/ `;
 ` mkdir BACKUP_CONS/ `;
 ` cp -R CONS/* BACKUP_CONS/ `;
