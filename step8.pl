@@ -56,13 +56,32 @@ my @split_label = split('\|', $label);
 unless ($Names[$_[0]] eq 'void') {
 print "\t\t", $_[0], "\t", $Names[$_[0]];
 for(my $p=0; $p<30-(length $Names[$_[0]]); $p++) { print '_'; }
-if( $split_label[0] eq '???' or $split_label[0] eq '') { my @temp = split(' ', ` ./step12.pl | grep '$Names[$_[0]]'; `); $split_label[0] =  $temp[-1]; } print  $split_label[0], ",\n";
+if( $split_label[0] eq '???' or $split_label[0] eq '') { 
+
+
+my @temp = split(' ', ` ./step12.pl | grep '$Names[$_[0]]'; `); $split_label[0] =  $temp[-1]; 
+
+#print RED, $Names[$_[0]], RESET, "\n";
+#print BLUE, $temp[-1], RESET, "\n";
+
+
+} print  $split_label[0], ",\n";
+
+
 }
 
 unless ($Names[$_[2]] eq 'void') {
 print "\t\t", $_[2], "\t", $Names[$_[2]];
 for(my $p=0; $p<30-(length $Names[$_[2]]); $p++) { print '_'; }
-if( $split_label[1] eq '???' or $split_label[1] eq '') { my @temp = split(' ', ` ./step12.pl | grep '$Names[$_[1]]'; `); $split_label[1] =  $temp[-1]; } print  $split_label[1], ",\n";
+if( $split_label[1] eq '???' or $split_label[1] eq '') { 
+
+my @temp = split(' ', ` ./step12.pl | grep '$Names[$_[2]]'; `); $split_label[1] =  $temp[-1]; 
+
+#print RED, $Names[$_[2]], RESET, "\n";
+#print BLUE, $temp[-1], RESET, "\n";
+
+
+} print  $split_label[1], ",\n";
 }
 
 $tracker{$_[0]} = 1;

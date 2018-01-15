@@ -3,7 +3,7 @@ use strict;
    use Term::ANSIColor qw(:constants);
 
 ` rm -f STEP7_COMPLETED `;
-` cp -R BACKUP/* TOPCONS/ `;   # BACK UP 
+#` cp -R BACKUP/* TOPCONS/ `;   # BACK UP 
 
 ## PARAMETER ##
 my $CUTOFF_UNSAFE=   upcase_in(2);   # 12;    # USED TO BE 5 !! ( BUT THIS IS NOT THE ACTUAL -- SEE BELOW )

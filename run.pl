@@ -11,6 +11,12 @@ use strict;
 
 my @input;
 
+print STDERR "Do you want to RESET ONLY (y/N): ";
+ $input[0] = <STDIN>;
+chomp $input[0];
+$input[0] =lc ($input[0]);
+if($input[0] ne 'y') { $input[0] = 'n';}
+
 print STDERR "Do you want to extract HMMs (y/N): ";
  $input[1] = <STDIN>;
 chomp $input[1];
@@ -46,7 +52,13 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf step6.out `;
 ` rm -rf STEP7_COMPLETED `;
 ` rm -rf TREE_COI.nex `;
-` rm -rf domtblout.txt `;
+#` rm -rf domtblout.txt `;
+
+if($input[0] eq 'y') {
+print STDERR 'Reset completed. ', "\n";
+exit;
+}
+
 
 ###########################################################################################
 
