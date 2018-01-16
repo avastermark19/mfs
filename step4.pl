@@ -28,7 +28,7 @@ print STDERR $DIR2, RESET, "\t";
 ` hhalign -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign 2> trash `;
 
 my @score = split(' ', ` grep -A 3 "^Command" CLUSTER/$DIR/HHALIGN/$DIR2.hhalign | tail -n 1 `);
-#print STDERR $score[5], RESET, "\t";
+print STDERR $score[5], RESET, "\t";
 if( $score[5] >= 1 ) { $score[5] = 10-log($score[5]); }  else { $score[5] = 10; } 
 print STDERR $score[5], RESET, "\n";
 
