@@ -19,11 +19,25 @@ chomp $dir[$i];
 for(my $j=0; $j<@dir; $j++) {
 chomp $dir[$j];
 
+#########################################################################
+print $dir[$i], ' ', $dir[$j], "\n";
+
+# Perform anti-ss_dssp error check
+
+my @test = split("\n", ` grep 'ss_dssp' CLUSTER/$dir[$i]/HHALIGN/$dir[$j].hhalign `);
+#print ON_RED, scalar @test, RESET, "\n";
+if  (scalar @test > 0) {
+#print 'ERROR', "\n";
+print "???\n???\n\n";
+} else {
+
+#########################################################################
+
 my @Q = split(' ', ` grep '^Q ' CLUSTER/$dir[$i]/HHALIGN/$dir[$j].hhalign | grep -v 'Consensus' `);
 my @T = split(' ', ` grep '^T ' CLUSTER/$dir[$i]/HHALIGN/$dir[$j].hhalign | grep -v 'Consensus' `);
 
 
-print $dir[$i], ' ', $dir[$j], "\n";
+#print $dir[$i], ' ', $dir[$j], "\n";
 
 if( scalar @Q > $length ) {
 
@@ -125,7 +139,11 @@ print "???\n???\n\n";
 
 }
 
-} }
+} # conditional for ss_dssp
+
+}  # end of j loop
+
+}
 
 }
 
