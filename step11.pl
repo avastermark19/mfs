@@ -25,7 +25,7 @@ chomp $FAMILY;
 ` mkdir REPEAT/ `;
 
 my @TMS = split('_', $FAMILY);
-my @MODEL = split("\n", ` ./step11.b $TMS[-1] ` );
+my @MODEL = split("\n", ` ./step11.bb $TMS[-1] ` );
 
 for(my $loop=0; $loop<@MODEL; $loop++) {
 

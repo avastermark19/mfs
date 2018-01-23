@@ -2,6 +2,9 @@
 use strict;
 use Term::ANSIColor qw(:constants);
 
+` rm -rf PDB/ `;
+` mkdir PDB/ `;
+
 my %best;
 
 my @input = ` cat step5.out `;
@@ -31,7 +34,7 @@ if ($cons[0]) {
 #print $name, "\n";
 
 my $TMS = (split('_', $input[$i]))[-1];
-my @models = ` ./step11.b $TMS `;
+my @models = ` ./step11.bb $TMS `;
 
 my @name = split( /\||\/|\s/,  $cons[0]);
 
@@ -50,8 +53,8 @@ chop $name[1];
 my $best_score=999;
 
 ` wget -nc -q "https://files.rcsb.org/view/$name[1].pdb" `;
-
-` grep '^ATOM' $name[1].pdb | grep ' CA '  > $name[1].CA `;
+` mv $name[1].pdb PDB/ `;
+` grep '^ATOM' PDB/$name[1].pdb | grep ' CA '  > PDB/$name[1].CA `;
 
 #####################################################################################
 
@@ -105,7 +108,7 @@ open(FILE_D, ">segment_B.simple");
 
 
 
-foreach my $line (` cat $name[1].CA `) {
+foreach my $line (` cat PDB/$name[1].CA `) {
 chomp $line;
 my $res_ID = join('',(split('', $line))[22 .. 25]);
 my $x = join('',(split('', $line))[30..37]);
@@ -133,12 +136,17 @@ my @len = split(' ', ` wc -l *simple `);
 if( $len[0] > $len[2] ) { ` head -n $len[2] segment_A.simple > temp; mv temp segment_A.simple ` }
 if( $len[0] < $len[2] ) { ` head -n $len[0] segment_B.simple > temp; mv temp segment_B.simple ` }
 
-if( $len[0]/$len[2] > 1.2 or $len[2]/$len[0] > 1.2 ) { } else { # print '*too different*', "\n"; } else {
+if( $len[0]/$len[2] > 1.2 or $len[2]/$len[0] > 1.2 ) {   } else { #print '*too different*', "\n"; } else {
 #print 'SIMILAR ENOUGH', "\t";
 #print (`./rmsd.exe segment_A.simple segment_B.simple`);
 
+my $TM_align1=( split(' ', ` ./TMalign segment_A segment_B | head -n 19 | tail -n 1`))[1];
+my $TM_align2=( split(' ',` ./TMalign segment_A segment_B | head -n 18 | tail -n 1`))[1];
+my $TM_align_avg = ($TM_align1+$TM_align2)/2;
+
 my $score= (split(' ',` ./AE_RMSD.exe segment_A segment_B `))[5] ;
-#print $score, "\n";
+#print $score, "\t";
+#print $TM_align_avg, "\n";
 if( $score < $best_score ) { $best{$name} = $mod; $best_score=$score; }
 #exit;
 
@@ -146,7 +154,7 @@ if( $score < $best_score ) { $best{$name} = $mod; $best_score=$score; }
 
 ################### OBTAIN ###################
 
-} else { } # print '*not* TESTABLE', "\n"; }
+} else {  } # print '*not* TESTABLE', "\n"; }
 
 }
 
