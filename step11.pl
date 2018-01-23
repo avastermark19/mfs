@@ -27,6 +27,12 @@ chomp $FAMILY;
 my @TMS = split('_', $FAMILY);
 my @MODEL = split("\n", ` ./step11.bb $TMS[-1] ` );
 
+#print RED, scalar @MODEL, RESET, "\n";
+
+if(scalar @MODEL == 0) {
+@MODEL = split("\n", ` ./step11.b $TMS[-1] ` ); # FALLBACK
+}
+
 for(my $loop=0; $loop<@MODEL; $loop++) {
 
 my @split_MODEL = split('\+', $MODEL[$loop]);
@@ -85,6 +91,8 @@ if($block==0 and $index > $START_POINT+$REPEAT_LENGTH+$split_MODEL[2] and $index
 
 ` rm -f temp.fa `;
 
+
+
 } # MAIN FOR LOOP
 
 ######################################################################################
@@ -122,6 +130,13 @@ print $input[$x], "\n";
 }
 
 }
+
+if(scalar @MODEL == 1) {
+#push @MODEL, $MODEL[-1];
+#print GREEN, scalar @MODEL, RESET, "\n";
+print 'temp                 -            178 temp                 -            201   5.1e-23   67.8   7.0   1   2   5.1e-23   5.1e-23   67.8   7.0   134   178     1    45     1    45 0.99 -', "\n";
+}
+
 
 }
 

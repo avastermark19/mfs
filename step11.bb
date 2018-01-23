@@ -43,7 +43,7 @@ print '0+'.$template1.'+0+'.($template2-1).'+0', "\n";
 
 if( $SPACE == $template1+$template2-2 ) {
 print '0+'.($template1-2).'+0+'.$template2.'+0', "\n";
-print '0+'.$template1.'+0+'.($template2-2).'+0-2', "\n";
+print '0+'.$template1.'+0+'.($template2-2).'+0', "\n";
 }
 
 

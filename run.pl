@@ -54,6 +54,10 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf TREE_COI.nex `;
 #` rm -rf domtblout.txt `;
 
+` rm -rf *.CA `;
+` rm -rf *.pdb `;
+` rm -rf segment_* `;
+
 if($input[0] eq 'y') {
 print STDERR 'Reset completed. ', "\n";
 exit;
@@ -78,7 +82,7 @@ print STDERR 'Predicting '; ` ./step2.pl `; print "\n";
 ` cp -R TOPCONS/* BACKUP/ `;
 } else {
 ` mkdir TOPCONS `;
-print STDERR 'Coping top. output ... ', "\n";
+print STDERR 'Copying top. output ... ', "\n";
 ` cp -R BACKUP/* TOPCONS/ `;
 }
 
@@ -95,7 +99,8 @@ print STDERR 'Making tree ... ', "\n";
 ###########################################################################################
 
 if($input[5] eq 'y') { 
-print STDERR 'Making cons ... ', "\n"; ` ./step5.pl > /dev/null 2>&1 ` ;
+ print STDERR 'Making cons ... ', "\n"; ` ./step5.pl > step5.out ` ;
+#print STDERR 'Making cons ... ', "\n"; ` ./step5.pl > /dev/null 2>&1 ` ;
 ` rm -rf BACKUP_CONS/ `;
 ` mkdir BACKUP_CONS/ `;
 ` cp -R CONS/* BACKUP_CONS/ `;
@@ -103,7 +108,7 @@ print STDERR 'Making cons ... ', "\n"; ` ./step5.pl > /dev/null 2>&1 ` ;
 } else {
 ` rm -rf CONS/ `;
 ` mkdir CONS `;
-print STDERR 'Coping cons. output ... ', "\n";
+print STDERR 'Copying cons. output ... ', "\n";
 ` cp -R BACKUP_CONS/* CONS/ `;
 }
 

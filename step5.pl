@@ -5,6 +5,8 @@ use strict;
 if( -e "STEP7_COMPLETED" ) { print 'Step 5 and 6 not recommended after completing Step7 ', "\n"; }
 unless ( -e "STEP7_COMPLETED" ) {
 
+open(OUTPUT, ">step5.out");
+
 # PRECOMPUTE CONS SEQUENCES
 my %jobid;
 
@@ -15,13 +17,13 @@ my @dir = ` ls CLUSTER `;
 for(my $i=0; $i<@dir; $i++) {
 chomp $dir[$i];
 
-print STDERR $dir[$i], "\n";
+print OUTPUT '>'.$dir[$i], "\n";
 
 my @Q = split(' ', ` grep '^Q ' CLUSTER/$dir[$i]/HHALIGN/$dir[$i].hhalign | grep -v 'Consensus' `);
 
 for(my $i=6; $i<@Q; $i+=3) { $Q[3] .= $Q[$i]; }
 
-print STDERR $Q[3], "\n";
+print OUTPUT $Q[3], "\n";
 
 open( FILE,">cons.txt");
 print FILE ">seq\n$Q[3]\n";
@@ -52,6 +54,8 @@ print STDERR scalar(keys %jobid), " -> ";
 } while ( keys %jobid > 0 ); 
 print STDERR "\n";
 print STDERR 'DONE', "\n";
+
+close(OUTPUT);
 
 }
 
