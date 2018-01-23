@@ -95,6 +95,7 @@ if ( $split_cons1[$i] eq 'M' ) { $run_TMS++; } else { ;}
 
 }
 
+
 if(scalar @TMS_MAP == $TMS) { #print 'TESTABLE', "\t"; 
 
 ################### OBTAIN ###################
@@ -140,13 +141,47 @@ if( $len[0]/$len[2] > 1.2 or $len[2]/$len[0] > 1.2 ) {   } else { #print '*too d
 #print 'SIMILAR ENOUGH', "\t";
 #print (`./rmsd.exe segment_A.simple segment_B.simple`);
 
+##############################################
+
+
+
+##############################################
+
+
+
+
 my $TM_align1=( split(' ', ` ./TMalign segment_A segment_B | head -n 19 | tail -n 1`))[1];
 my $TM_align2=( split(' ',` ./TMalign segment_A segment_B | head -n 18 | tail -n 1`))[1];
 my $TM_align_avg = ($TM_align1+$TM_align2)/2;
 
 my $score= (split(' ',` ./AE_RMSD.exe segment_A segment_B `))[5] ;
-#print $score, "\t";
-#print $TM_align_avg, "\n";
+print $name, "\t";
+print $mod, "\t";
+print $score, "\t";
+print $TM_align_avg, "\n";
+
+
+##############################################
+print ON_RED, $name, RESET, "\n";
+#print ON_RED, "@TMS_MAP\n", RESET;
+
+unless ( -e "STEP7_COMPLETED" ) {
+
+my $border = $TMS_MAP[$split_mod[0] + $split_mod[1] + $split_mod[2] ];
+
+#print ON_RED, $border, RESET, "\n";
+#print ON_RED, $query_length, RESET;
+
+my $hh_result = ` hhalign -i CLUSTER/$name/seq.hhm -t CLUSTER/$name/seq.hhm -nocontxt -cov 100 -loc -E 10 -excl 0-$border -template_excl $border-$query_length `;
+
+print ON_GREEN, $hh_result, RESET, "\n";
+
+}
+
+##############################################
+
+
+
 if( $score < $best_score ) { $best{$name} = $mod; $best_score=$score; }
 #exit;
 
