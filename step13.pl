@@ -19,7 +19,6 @@ chomp $input[$i+1];
 
 my $query_length = length($input[$i+1]);
 
-
 #####################################################################################
 
 # Need to check if this sequence has info in CONS/
@@ -167,12 +166,16 @@ print ON_RED, $name, RESET, "\n";
 
 unless ( -e "STEP7_COMPLETED" ) {
 
-my $border = $TMS_MAP[$split_mod[0] + $split_mod[1] + $split_mod[2] ];
+my $border0 = $TMS_MAP[$split_mod[0]  ];
+my $border1 = $TMS_MAP[$split_mod[0] + $split_mod[1]  ];
+my $border2=  $TMS_MAP[$split_mod[0] + $split_mod[1] + $split_mod[2] ];
+my $border3 = $TMS_MAP[$split_mod[0] + $split_mod[1] + $split_mod[2] + $split_mod[3] ];
 
 #print ON_RED, $border, RESET, "\n";
 #print ON_RED, $query_length, RESET;
 
-my $hh_result = ` hhalign -i CLUSTER/$name/seq.hhm -t CLUSTER/$name/seq.hhm -nocontxt -cov 100 -loc -E 10 -excl 0-$border -template_excl $border-$query_length `;
+my $hh_result = ` hhalign -i CLUSTER/$name/seq.hhm -t CLUSTER/$name/seq.hhm -nocontxt -cov 100 -loc -E 10 -excl 0-$border2 -template_excl $border1-$query_length `;
+
 
 print ON_GREEN, $hh_result, RESET, "\n";
 

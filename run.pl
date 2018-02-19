@@ -50,6 +50,7 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf CLUSTER/ `;
 ` rm -rf step11.out `;
 ` rm -rf step6.out `;
+` rm -rf step5.out `;
 ` rm -rf STEP7_COMPLETED `;
 ` rm -rf TREE_COI.nex `;
 #` rm -rf domtblout.txt `;
@@ -57,6 +58,9 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf *.CA `;
 ` rm -rf *.pdb `;
 ` rm -rf segment_* `;
+
+` rm -rf step11b.out `;
+` rm -rf step12b.out `;
 
 if($input[0] eq 'y') {
 print STDERR 'Reset completed. ', "\n";
@@ -122,6 +126,10 @@ print STDERR 'Reformatting ...', "\n";
 
 print STDERR 'Building evolutionary models ...', "\n";
 ` ./step11.pl > step11.out `;
+
+print STDERR 'Making Z-score distribution ...', "\n";
+` ./step11b.pl > step11b.out `;
+` ./step12b.pl > step12b.out `;
 
 ###########################################################################################
 

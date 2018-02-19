@@ -4,6 +4,6 @@ $CUTOFF_TMS  5      # used to be 6
 $CUTOFF_MEMBERS  4  # used to be 5
 $length 12    #from step6
 TOP_MET_COUNT 4    ## NOT READ FROM HERE CHANGE MANUALLY IN STEP3
-setting 7
+REPEAT_UNIT_SETTING 6
 setting 8
 

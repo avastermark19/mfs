@@ -2,8 +2,8 @@
 use strict;
 
 #ENCODE TEMPLATE 5+5#######################################################
-my $template1=6;
-my $template2=6;
+my $template1=upcase_in(7);
+my $template2=upcase_in(7);
 #ENCODE TEMPLATE 5+5#######################################################
 
 if ( $ARGV[0] ) {
@@ -51,4 +51,5 @@ print '0+'.$template1.'+0+'.($template2-2).'+0', "\n";
 
 exit;
 
+ sub upcase_in { return (split(' ', ` head -n $_[0] config.file | tail -n 1 `))[1]; }
 
