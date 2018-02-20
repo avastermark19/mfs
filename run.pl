@@ -59,8 +59,9 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf *.pdb `;
 ` rm -rf segment_* `;
 
-` rm -rf step11b.out `;
+#` rm -rf step11b.out `;
 ` rm -rf step12b.out `;
+` rm -rf step13.outb `;
 
 if($input[0] eq 'y') {
 print STDERR 'Reset completed. ', "\n";
@@ -124,11 +125,14 @@ print STDERR 'Making labels ...', "\n";
 print STDERR 'Reformatting ...', "\n";
 ` ./step10.pl > temp; mv temp step6.out `;
 
+print STDERR 'Structural validation ...', "\n";
+` ./step13.pl >> step13.outb 2>&1 `;
+
 print STDERR 'Building evolutionary models ...', "\n";
 ` ./step11.pl > step11.out `;
 
 print STDERR 'Making Z-score distribution ...', "\n";
-` ./step11b.pl > step11b.out `;
+if( -e "step11b.out" ) {} else { ` ./step11b.pl > step11b.out `; }
 ` ./step12b.pl > step12b.out `;
 
 ###########################################################################################

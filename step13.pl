@@ -2,6 +2,8 @@
 use strict;
 use Term::ANSIColor qw(:constants);
 
+` ./step5.pl > step5.out `;
+
 ` rm -rf PDB/ `;
 ` mkdir PDB/ `;
 
@@ -161,7 +163,7 @@ print $TM_align_avg, "\n";
 
 
 ##############################################
-print ON_RED, $name, RESET, "\n";
+print $name, "\n";
 #print ON_RED, "@TMS_MAP\n", RESET;
 
 unless ( -e "STEP7_COMPLETED" ) {
@@ -177,7 +179,7 @@ my $border3 = $TMS_MAP[$split_mod[0] + $split_mod[1] + $split_mod[2] + $split_mo
 my $hh_result = ` hhalign -i CLUSTER/$name/seq.hhm -t CLUSTER/$name/seq.hhm -nocontxt -cov 100 -loc -E 10 -excl 0-$border2 -template_excl $border1-$query_length `;
 
 
-print ON_GREEN, $hh_result, RESET, "\n";
+print $hh_result, "\n";
 
 }
 
@@ -203,7 +205,10 @@ if( $score < $best_score ) { $best{$name} = $mod; $best_score=$score; }
 ` rm -f temp.fa `;
 
 #print $best{Sugar_tr_12};
-print "$_ $best{$_}\n" for (sort keys %best);
+
+open(FILE, ">step13.out");
+print FILE "$_ $best{$_}\n" for (sort keys %best);
+close(FILE);
 
 exit;
 

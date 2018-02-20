@@ -36,7 +36,7 @@ my @MODEL = split("\n", ` ./step11.bbb $TMS[-1] ` );
 for(my $loop=0; $loop<@MODEL; $loop++) {
 
 my @split_MODEL = split('\+', $MODEL[$loop]);
-print STDERR "@split_MODEL\n", RESET;
+#print STDERR "@split_MODEL\n", RESET;
 
 $START_POINT = $split_MODEL[0]+1;
 $REPEAT_LENGTH = $split_MODEL[1];

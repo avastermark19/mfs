@@ -47,20 +47,25 @@ foreach my $key (keys %hash)
   my $value = $hash{$key};
   print $key, " "; 
 
- print $value, "__";
+ print $value, "_";
 
 my $avg = (split(' ', ` grep '$key' step12b.out `))[2];
 my $sd  = (split(' ', ` grep '$key' step12b.out `))[3];
+
+my $struc = (split(' ', ` grep '$key' step13.out `))[1];
+#print '$struc=',$struc,"\n";
 
 #print $avg, "\t";
 #print $sd, "\t";
 # print $hash2{$key}, "\t";
 
+if ( $struc ) { print '$struc=',$struc,"\n"; } else {
 if ( $sd > 0 and $value ne 'uninitialized' ) {  my $z_score = abs( $hash2{$key} - $avg ) / $sd; 
 printf ("%.2f", $z_score);
 print "\n";
  } else {
 print 'undef', "\n";
+}
 }
 
 }
