@@ -208,6 +208,7 @@ if( $score < $best_score ) { $best{$name} = $mod; $best_score=$score; }
 
 open(FILE, ">step13.out");
 print FILE "$_ $best{$_}\n" for (sort keys %best);
+print FILE 'default 0+0+0+0+0', "\n";
 close(FILE);
 
 exit;
