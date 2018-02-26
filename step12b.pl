@@ -89,11 +89,14 @@ $hash5{$last_target} += ($score-($hash3{$last_target}/$hash4{$last_target}))**2;
 foreach my $key (keys %hash)
 {
   my $value = $hash{$key};
-  print $key, " ";
 
+if (     ($hash4{$key} - 1) != 0 ) {
+print $key, " ";
  print $value, " ";
  print $hash3{$key}/$hash4{$key}, "\t";
 print sqrt( $hash5{$key} / ($hash4{$key} - 1) ), "\n";
+}
+
 }
 
 exit;
