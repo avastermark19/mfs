@@ -54,6 +54,8 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf step5.out `;
 ` rm -rf STEP7_COMPLETED `;
 ` rm -rf TREE_COI.nex `;
+` rm -f *.r `;
+` rm -f step13.out `;
 #` rm -rf domtblout.txt `;
 
 ` rm -rf *.CA `;
