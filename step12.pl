@@ -60,7 +60,7 @@ my $struc = (split(' ', ` grep '$key' step13.out `))[1];
 # print $hash2{$key}, "\t";
 
 if ( $struc ) { print '$struc=',$struc,"\n"; } else {
-if ( $sd > 0 and $value ne 'uninitialized' ) {  my $z_score = abs( $hash2{$key} - $avg ) / $sd; 
+if ( $sd and $sd > 0 and $value ne 'uninitialized' ) {  my $z_score = abs( $hash2{$key} - $avg ) / $sd; 
 printf ("%.2f", $z_score);
 print "\n";
  } else {
