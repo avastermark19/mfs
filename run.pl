@@ -57,6 +57,7 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -f *.r `;
 ` rm -f step13.out `;
 #` rm -rf domtblout.txt `;
+` rm -f seq.txt `;
 
 ` rm -rf *.CA `;
 ` rm -rf *.pdb `;
