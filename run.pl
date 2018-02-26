@@ -51,6 +51,8 @@ if($input[7] ne 'y') { $input[7] = 'n';}
 ` rm -rf CLUSTER/ `;
 ` rm -rf step11.out `;
 ` rm -rf step6.out `;
+` rm -f tail.fa `;
+` rm -f temp.fa `;
 ` rm -rf PDB/ `;
 ` rm -rf step5.out `;
 ` rm -rf STEP7_COMPLETED `;
