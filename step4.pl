@@ -10,6 +10,8 @@ my $colnames='colnames(B) <- c("';
 
 my @dim = ` ls CLUSTER/ `;
 
+my $A=0;
+
 foreach my $DIR (@dim) { 
 chomp $DIR;
 
@@ -24,8 +26,14 @@ chomp $DIR2;
 print STDERR $DIR, RESET, "\t";
 print STDERR $DIR2, RESET, "\t";
 
+$A++;
+#if($A>2) { exit; }
  
-` hhalign -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign 2> trash `;
+#` hhalign -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign 2> trash `;
+
+` hhalign -v 0 -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign > /dev/null 2>&1  `;
+
+#> /dev/null 2>&1
 
 my @score = split(' ', ` grep -A 3 "^Command" CLUSTER/$DIR/HHALIGN/$DIR2.hhalign | tail -n 1 `);
 print STDERR $score[5], RESET, "\t";
