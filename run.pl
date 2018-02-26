@@ -92,7 +92,7 @@ print STDERR 'Predicting '; ` ./step2.pl `; print "\n";
 ` cp -R TOPCONS/* BACKUP/ `;
 } else {
 
-if( -e BACKUP/) {
+if( -e "BACKUP/" ) {
 
 ` mkdir TOPCONS `;
 print STDERR 'Copying top. output ... ', "\n";
@@ -123,7 +123,7 @@ if($input[5] eq 'y') {
 
 } else {
 
-if( -e BACKUP_CONS/ ) {
+if( -e "BACKUP_CONS/" ) {
 
 ` rm -rf CONS/ `;
 ` mkdir CONS `;
