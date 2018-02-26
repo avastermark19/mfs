@@ -1,5 +1,6 @@
 #! /usr/bin/perl -w
 use strict;
+use Term::ANSIColor qw(:constants);
 
 ###########################################################################################
 
@@ -132,7 +133,18 @@ print STDERR 'Building evolutionary models ...', "\n";
 ` ./step11.pl > step11.out `;
 
 print STDERR 'Making Z-score distribution ...', "\n";
-if( -e "step11b.out" ) {} else { ` ./step11b.pl > step11b.out `; }
+
+my $step11b=-1;
+
+if( -e "step11b.out" ) {
+ $step11b = (split( ' ', ` wc -l step11b.out `))[0];
+chomp $step11b;
+#print RED $step11b, RESET, "\n";
+}
+
+#exit;
+
+if( -e "step11b.out" and $step11b>0 ) {} else { ` ./step11b.pl > step11b.out `; }
 ` ./step12b.pl > step12b.out `;
 
 ###########################################################################################
