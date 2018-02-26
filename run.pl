@@ -91,9 +91,15 @@ print STDERR 'Predicting '; ` ./step2.pl `; print "\n";
 ` mkdir BACKUP/ `;
 ` cp -R TOPCONS/* BACKUP/ `;
 } else {
+
+if( -e BACKUP/) {
+
 ` mkdir TOPCONS `;
 print STDERR 'Copying top. output ... ', "\n";
 ` cp -R BACKUP/* TOPCONS/ `;
+
+} else { print 'BACKUP/ does not exist', "\n"; exit; }
+
 }
 
 ###########################################################################################
@@ -116,10 +122,16 @@ if($input[5] eq 'y') {
 ` cp -R CONS/* BACKUP_CONS/ `;
 
 } else {
+
+if( -e BACKUP_CONS/ ) {
+
 ` rm -rf CONS/ `;
 ` mkdir CONS `;
 print STDERR 'Copying cons. output ... ', "\n";
 ` cp -R BACKUP_CONS/* CONS/ `;
+
+} else { print 'BACKUP_CONS/ does not exist', "\n"; exit; }
+
 }
 
 ###########################################################################################
