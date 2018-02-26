@@ -3,7 +3,7 @@
 
 # clear ; 
 
-# FILES NEEDED
+# FILES NEEDED (5 files)
 # -rw-r--r-- 1 aake aake     963417 dec  4 11:00 Pfam-A.clans.tsv (ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam31.0/Pfam-A.clans.tsv.gz)   #unzip
 # -rw-r--r-- 1 aake aake 1372159421 dec  4 10:55 Pfam-A.hmm       (ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam31.0/Pfam-A.hmm.gz)         #unzip
 # -rw-r--r-- 1 aake aake  268833358 dec  4 10:47 uniprot_sprot.fasta (ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz)
@@ -13,6 +13,25 @@ https://zhanglab.ccmb.med.umich.edu/TM-align/TMalign.gz
 
 # rm -rf TOPCONS/ ;  rm -rf CONS/ ;  rm -rf REPEAT/ ;  rm -rf CLUSTER/ ;  rm -rf step11.out ; rm -rf step6.out ;  rm -rf STEP7_COMPLETED ;  rm -rf TREE_COI.nex ;  rm -rf domtblout.txt ;
 
+
+
+uninstall hmmer
+sudo apt-get remove hmmer
+(now you cant type hmmscan anymore)
+sudo apt-get install hmmer
+
+uninstall hhsuite
+sudo apt-get remove hhsuite
+(now you cant type hhalign anymore)
+sudo apt-get install hhsuite
+
+sudo apt-get remove mrbayes
+(now you cant type mb anymore)
+sudo apt-get install mrbayes
+
+
+type chmod u+x *.pl ; chmod u+x *.exe
+chmod *.b, *.bb, *.bbb, TMalign
 
 # These files should be downloaded from GitHub, steps1-12, and step11.b, config.file, read.me and run.pl
 #-rw-r--r--    1 aake aake        228 jan 12 09:55 config.file
