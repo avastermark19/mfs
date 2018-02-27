@@ -109,6 +109,8 @@ print STDERR 'Copying top. output ... ', "\n";
 print STDERR 'Making clusters ... ', "\n";
 ` ./step3.pl > /dev/null 2>&1 `;
 
+` ./step15.pl `;
+
 ###########################################################################################
 
 print STDERR 'Making tree ... ', "\n";
