@@ -37,14 +37,14 @@ chomp $FAMILY;
 
 my @TMS = split('_', $FAMILY);
 my @MODEL;
-if( $ARGV[0] eq 'b' ) { @MODEL = split("\n", ` ./step11.bbbb $TMS[-1] bbb ` ); }
-if( $ARGV[0] eq 'a' ) { @MODEL = split("\n", ` ./step11.bbbb $TMS[-1] bb ` ); }
+if( $ARGV[0] eq 'b' ) { @MODEL = split("\n", ` ./step16.pl $TMS[-1] bbb ` ); }
+if( $ARGV[0] eq 'a' ) { @MODEL = split("\n", ` ./step16.pl $TMS[-1] bb ` ); }
 
 #print RED, scalar @MODEL, RESET, "\n";
 
 if( $ARGV[0] eq 'a' ) { # a mode fall back
 if(scalar @MODEL == 0) {
-@MODEL = split("\n", ` ./step11.bbbb $TMS[-1] b ` ); # FALLBACK
+@MODEL = split("\n", ` ./step16.pl $TMS[-1] b ` ); # FALLBACK
 }
 }
 
