@@ -165,7 +165,7 @@ chomp $step11b;
 #exit;
 
 if( -e "step11b.out" and $step11b>0 ) {} else { ` ./step11.pl b > step11b.out `; } # b mode
-` ./step12b.pl > step12b.out `;
+` ./step12.pl b > step12b.out `; # B MODE ...
 
 ###########################################################################################
 
