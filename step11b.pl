@@ -2,6 +2,10 @@
 use strict;
   use Term::ANSIColor qw(:constants);
 
+### Find out what time it is ###
+my $time = ` date +%s `;
+
+
 ` rm -rf REPEAT/ `;
 ` mkdir REPEAT/ `;
 
@@ -92,6 +96,14 @@ if($block==0 and $index > $START_POINT+$REPEAT_LENGTH+$split_MODEL[2] and $index
 ` rm -f temp.fa `;
 
 
+#print '.';
+### Find out what time it is ###
+my $time2 = ` date +%s `;
+if( $time2-$time > 180 ) {
+#times up
+goto DIE1;
+}
+
 
 } # MAIN FOR LOOP
 
@@ -140,6 +152,7 @@ print 'temp                 -            178 temp                 -            2
 
 }
 
+DIE1:
 ` rm -f temp.fa `;
 ` rm -f tail.fa `;
 ` rm -f scan.domtblout `;
