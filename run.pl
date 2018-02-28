@@ -10,6 +10,8 @@ use Term::ANSIColor qw(:constants);
 
 ###########################################################################################
 
+` clear; `;
+
 my @input;
 
 print STDERR "Do you want to RESET ONLY (y/N): ";
