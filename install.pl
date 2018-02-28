@@ -11,9 +11,7 @@ if($internet eq 'PING') { print 'Internet OK', "\n"; } else { print 'Check your 
 
 ` chmod u+x *.pl `;
 ` chmod u+x *.exe `;
-` chmod u+x *.b `;
-` chmod u+x *.bb `;
-` chmod u+x *.bbb `;
+` chmod u+x *.bbbb `;
 ` chmod u+x TMalign `;
 
 exit;
