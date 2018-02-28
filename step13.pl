@@ -35,7 +35,7 @@ if ($cons[0]) {
 #print $name, "\n";
 
 my $TMS = (split('_', $input[$i]))[-1];
-my @models = ` ./step11.bb $TMS `;
+my @models = ` ./step11.bbbb $TMS bb `;
 
 my @name = split( /\||\/|\s/,  $cons[0]);
 
