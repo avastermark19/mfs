@@ -2,6 +2,17 @@
 use strict;
   use Term::ANSIColor qw(:constants);
 
+
+###############################
+THIS IS STEP11C WITH A AND B MODES
+###############################
+
+if ( $ARGV[0] and ( $ARGV[0] eq 'a' or $ARGV[0] eq 'b' ) ) { # a or b mode
+
+### Find out what time it is ###
+my $time = ` date +%s `;
+
+
 ` rm -rf REPEAT/ `;
 ` mkdir REPEAT/ `;
 
@@ -25,18 +36,22 @@ chomp $FAMILY;
 ` mkdir REPEAT/ `;
 
 my @TMS = split('_', $FAMILY);
-my @MODEL = split("\n", ` ./step11.bb $TMS[-1] ` );
+my @MODEL;
+if( $ARGV[0] eq 'b' ) { @MODEL = split("\n", ` ./step11.bbb $TMS[-1] ` ); }
+if( $ARGV[0] eq 'a' ) { @MODEL = split("\n", ` ./step11.bb $TMS[-1] ` ); }
 
 #print RED, scalar @MODEL, RESET, "\n";
 
+if( $ARGV[0] eq 'a' ) { # a mode fall back
 if(scalar @MODEL == 0) {
 @MODEL = split("\n", ` ./step11.b $TMS[-1] ` ); # FALLBACK
+}
 }
 
 for(my $loop=0; $loop<@MODEL; $loop++) {
 
 my @split_MODEL = split('\+', $MODEL[$loop]);
-#print ON_RED, "@split_MODEL\n", RESET;
+#print STDERR "@split_MODEL\n", RESET;
 
 $START_POINT = $split_MODEL[0]+1;
 $REPEAT_LENGTH = $split_MODEL[1];
@@ -92,6 +107,14 @@ if($block==0 and $index > $START_POINT+$REPEAT_LENGTH+$split_MODEL[2] and $index
 ` rm -f temp.fa `;
 
 
+#print '.';
+### Find out what time it is ###
+my $time2 = ` date +%s `;
+if( $time2-$time > 180 and $ARGV[0] eq 'b' ) {
+#times up
+goto DIE1;
+}
+
 
 } # MAIN FOR LOOP
 
@@ -140,9 +163,12 @@ print 'temp                 -            178 temp                 -            2
 
 }
 
+DIE1:
 ` rm -f temp.fa `;
 ` rm -f tail.fa `;
 ` rm -f scan.domtblout `;
+
+} else { print 'Error: check ARGV issue step11c prototype ', "\n";  }
 
 exit;
 

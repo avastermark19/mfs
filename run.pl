@@ -150,7 +150,7 @@ print STDERR 'Structural validation ...', "\n";
 ` ./step13.pl >> step13.outb 2>&1 `;
 
 print STDERR 'Building evolutionary models ...', "\n";
-` ./step11.pl > step11.out `;
+` ./step11.pl a > step11.out `; # a mode
 
 print STDERR 'Making Z-score distribution ...', "\n";
 
@@ -164,7 +164,7 @@ chomp $step11b;
 
 #exit;
 
-if( -e "step11b.out" and $step11b>0 ) {} else { ` ./step11b.pl > step11b.out `; }
+if( -e "step11b.out" and $step11b>0 ) {} else { ` ./step11.pl b > step11b.out `; } # b mode
 ` ./step12b.pl > step12b.out `;
 
 ###########################################################################################
