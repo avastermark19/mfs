@@ -189,5 +189,12 @@ print @output, "\n";
 
 ###########################################################################################
 
+print STDERR 'Creating MRB input file ... ', "\n";
+` ./step9.pl > step9.out `;
+
+print STDERR 'Testing monotopic vs. bitopic distribution ... ', "\n";
+` ./step14.pl > step14.out `;
+
+
 exit;
 
