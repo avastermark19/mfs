@@ -4,7 +4,7 @@ use strict;
 
 
 ###############################
-THIS IS STEP11C WITH A AND B MODES
+#THIS IS STEP11C WITH A AND B MODES
 ###############################
 
 if ( $ARGV[0] and ( $ARGV[0] eq 'a' or $ARGV[0] eq 'b' ) ) { # a or b mode
