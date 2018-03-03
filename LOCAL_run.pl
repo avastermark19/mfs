@@ -14,6 +14,17 @@ system("clear");
 
 my @input;
 
+if( $ARGV[0] ) {
+
+my @split_argv = split('', $ARGV[0]);
+$input[0] = $split_argv[0];
+$input[1] = $split_argv[1];
+$input[2] = $split_argv[2];
+$input[5] = $split_argv[3];
+$input[7] = $split_argv[4];
+
+} else {
+
 print STDERR "Do you want to RESET ONLY (y/N): ";
  $input[0] = <STDIN>;
 chomp $input[0];
@@ -43,6 +54,8 @@ print STDERR "Do you want to run JACKHMMR (y/N): ";
 chomp $input[7];
 $input[7] =lc ($input[7]);
 if($input[7] ne 'y') { $input[7] = 'n';}
+
+}
 
 ###########################################################################################
 
@@ -182,10 +195,12 @@ print STDERR 'Iterating ... ', "\n";
 print STDERR 'Making final tree ... ', "\n";
 ` ./step4.pl > /dev/null 2>&1 `;
 
-print STDERR 'Displaying labels on tree', "\n";
-my @output = ` ./step8.pl `;
+print STDERR 'Displaying labels on tree ... ', "\n";
+#my @output = ` ./step8.pl `;
 
-print @output, "\n";
+#print @output, "\n";
+
+system(" ./step8.pl ");
 
 ###########################################################################################
 
