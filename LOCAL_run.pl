@@ -196,11 +196,9 @@ print STDERR 'Making final tree ... ', "\n";
 ` ./step4.pl > /dev/null 2>&1 `;
 
 print STDERR 'Displaying labels on tree ... ', "\n";
-#my @output = ` ./step8.pl `;
+my @output = ` ./step8.pl `;
 
-#print @output, "\n";
-
-system(" ./step8.pl ");
+print STDERR @output, "\n";
 
 ###########################################################################################
 
