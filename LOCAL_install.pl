@@ -12,7 +12,7 @@ use strict;
 
 if ( -e "../../mfs/BACKUP_MFS" ) {
 ` mkdir BACKUP `;
-` cp -r ../../mfs/BACKUP_MFS BACKUP/ `;
+` cp -r ../../mfs/BACKUP_MFS/* BACKUP/ `;
 }
 
 exit;
