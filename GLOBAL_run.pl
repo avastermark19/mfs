@@ -30,12 +30,12 @@ if($input[1] eq '') { $input[1] = 6;}
 if($input[1] != 4) { if($input[1] != 5) { if($input[1] != 6) { goto die2; } } }
 
 die3:
-print STDERR "Which level of TOPCONS granularity (e.g. 1,3 /default=2) [The higher the number, the more less stringent clusters.]: ";
+print STDERR "Which level of TOPCONS granularity (e.g. 1,3,4 /default=2) [The higher the number, the more less stringent clusters.]: ";
  $input[2] = <STDIN>;
 chomp $input[2];
 $input[2] =uc ($input[2]);
 if($input[2] eq '') { $input[2] = 2;}
-if($input[2] != 1) { if($input[2] != 2) { if($input[2] != 3) { goto die3; } } }
+if($input[2] != 1) { if($input[2] != 2) { if($input[2] != 3) { if($input[2] != 4 ) { goto die3; } } } }
 
 print 'The current settings are : ', $input[0], ' ', $input[1], ' ', $input[2], "\n";
 print 'Typical settings could be: MFS 6 2', "\n";
@@ -74,6 +74,11 @@ print FILE 'if( split( /1{$CUTOFF_UNSAFE,}|2{$CUTOFF_UNSAFE,}|3{$CUTOFF_UNSAFE,}
 if( $input[2]  ==3 ) {
 print FILE 'if( split( /1{$CUTOFF_UNSAFE,}|2{$CUTOFF_UNSAFE,}/ , $seq) > 1 ) {  ` rm -rf TOPCONS/$DIR `; $DISCARDED_UNSAFE++; } else {' , "\n\n";
 }
+
+if( $input[2]  ==4 ) {
+print FILE 'if( split( /1{$CUTOFF_UNSAFE,}/ , $seq) > 1 ) {  ` rm -rf TOPCONS/$DIR `; $DISCARDED_UNSAFE++; } else {' , "\n\n";
+}
+
 
 close(FILE);
 
