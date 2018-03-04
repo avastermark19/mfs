@@ -156,7 +156,7 @@ print STDERR 'Copying cons. output ... ', "\n";
 ###########################################################################################
 
 print STDERR 'Making labels ...', "\n";
-` ./step6.pl > step6.out `;
+` ./step6.pl 1>> step6.out 2>> /dev/null `;
 
 print STDERR 'Reformatting ...', "\n";
 ` ./step10.pl > temp; mv temp step6.out `;
