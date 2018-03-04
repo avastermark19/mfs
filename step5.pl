@@ -53,7 +53,7 @@ delete $jobid{$key};
 print STDERR scalar(keys %jobid), " -> ";
 } while ( keys %jobid > 0 ); 
 print STDERR "\n";
-print STDERR 'DONE', "\n";
+print STDERR 'DONE', "\n\n";
 
 close(OUTPUT);
 
