@@ -31,7 +31,7 @@ $A++;
  
 #` hhalign -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign 2> trash `;
 
-` hhalign -v 0 -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign > /dev/null 2>&1  `;
+` hhalign -v 0 -i CLUSTER/$DIR/seq.hhm -t CLUSTER/$DIR2/seq.hhm -nocontxt -glob -cov 100 -o CLUSTER/$DIR/HHALIGN/$DIR2.hhalign >> /dev/null 2>&1  `;
 
 #> /dev/null 2>&1
 

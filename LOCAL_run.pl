@@ -165,7 +165,7 @@ print STDERR 'Structural validation ...', "\n";
 ` ./step13.pl >> step13.outb 2>&1 `;
 
 print STDERR 'Building evolutionary models ...', "\n";
-` ./step11.pl a > step11.out `; # a mode
+` ./step11.pl a 1>> step11.out 2>> /dev/null `; # a mode
 
 print STDERR 'Making Z-score distribution ...', "\n";
 
@@ -191,6 +191,8 @@ print STDERR 'Iterating ... ', "\n";
 } 
 
 ###########################################################################################
+
+system(" export MALLOC_CHECK_=0 "); # suppress an error
 
 print STDERR 'Making final tree ... ', "\n";
 ` ./step4.pl > /dev/null 2>&1 `;
