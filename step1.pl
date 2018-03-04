@@ -10,7 +10,7 @@ use strict;
 #PARAMETER
 my $clan = upcase_in(1);
 
-if ( ` cat Pfam-A.clans.tsv | awk '\$3 == \"$clan\"' `  ) {} else { print 'warning: INVALID CLAN', "\n"; exit; }
+if ( ` cat Pfam-A.clans.tsv | awk '\$2 == \"$clan\"' `  ) {} else { print 'warning: INVALID CLAN', "\n"; exit; }
 
 print STDERR ON_RED, $clan, RESET, "\t";
 #END 
@@ -22,7 +22,7 @@ close(FILE);
 my @list;
 foreach my $line (@file) {
  my @array = split(' ', $line);
- if($array[2] eq $clan) { push @list, $array[3]; }
+ if($array[1] eq $clan) { push @list, $array[3]; }
 }
 
 print STDERR scalar @list, "\n";
@@ -36,7 +36,7 @@ foreach my $hmm (@list) {
 
 ` echo 'HMMER3/f [3.1b2 | February 2015]'  >> $clan.hmm `;
 print STDERR "sed -n -e '/$hmm/,/\\/\\// p' Pfam-A.hmm >> $clan.hmm\n";
-` sed -n -e  '/$hmm\$/,/\\/\\// p' Pfam-A.hmm >> $clan.hmm `; 
+` sed -n -e  '/NAME  $hmm\$/,/\\/\\// p' Pfam-A.hmm >> $clan.hmm `; 
 
 }
 

@@ -14,12 +14,13 @@ print '***BlueSky Research March2018***', "\n";
 my @input;
 
 DIE1:
-print STDERR "Do you want to RESET ONLY (APC,DMT,CPA_AT/default=MFS): ";
+print STDERR "[ CL0062=APC, CL0184=DMT, CL0064=CPA_AT, CL0015=MFS ]\n";
+print STDERR "Do you want to RESET ONLY (CL0062,,/default=MFS): ";
  $input[0] = <STDIN>;
 chomp $input[0];
 $input[0] =uc ($input[0]);
-if($input[0] eq '') { $input[0] = 'MFS';}
-if($input[0] ne 'MFS') { if($input[0] ne 'DMT') { if($input[0] ne 'APC') { if($input[0] ne 'CPA_AT') { goto DIE1; } } } }
+if($input[0] eq '') { $input[0] = 'CL0015';}
+if($input[0] ne 'CL0015') { if($input[0] ne 'CL0184') { if($input[0] ne 'CL0062') { if($input[0] ne 'CL0064') { goto DIE1; } } } }
 
 die2:
 print STDERR "Which repeat unit do you want to try (e.g. 4,5 /default=6): ";
