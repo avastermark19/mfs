@@ -11,6 +11,16 @@ use strict;
 system("clear");
 print '***BlueSky Research March2018***', "\n";
 
+print 'Nucleic Acids Res. 2016 Jan 4; 44(Database issue): D372–D379. ', "\n";
+print '    1. ABC_membrane (CL0241), maybe 2
+    2. ABC-2 some kind of 3+3? (CL0181)
+    3. IT (Ion Transporter) superfamily, CL0182 6+6
+    4. CopD Like (CL0430), 4+4?
+    5. Holins (CL0562,3,4), maybe 3?
+    6. LysE (CL0292), maybe 3
+    7. PTS_EIIC (CL0493), maybe 5
+    8. RND permease (CL0322), maybe 6', "\n";
+
 my @input;
 
 DIE1:
