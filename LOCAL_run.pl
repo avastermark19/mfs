@@ -192,7 +192,9 @@ print STDERR 'Iterating ... ', "\n";
 
 ###########################################################################################
 
-system(" export MALLOC_CHECK_=0 "); # suppress an error
+#system(" export MALLOC_CHECK_=0 "); # suppress an error
+#$ENV{CVSROOT}='<cvs>';
+$ENV{MALLOC_CHECK_}=0;
 
 print STDERR 'Making final tree ... ', "\n";
 ` ./step4.pl > /dev/null 2>&1 `;
