@@ -2,6 +2,8 @@
 use strict;
 use Term::ANSIColor qw(:constants);
 
+# Formerly ClanTester.pl
+
 if( $ARGV[0] ) {
 
 #system("clear");
