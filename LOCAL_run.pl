@@ -211,11 +211,7 @@ print STDERR 'Creating MRB input file ... ', "\n";
 ` ./step9.pl > step9.out `;
 
 print STDERR 'Testing monotopic vs. bitopic distribution ... ', "\n";
-` ./step14.pl  2>  step14.out `;
-` ./step14.pl  2>  step14.out2 `;
-` ./step14.pl  2>  step14.out3 `;
-` ./step14.pl  2>  step14.out4 `;
-` ./step14.pl  2>  step14.out5 `;
+` ./step14.pl  >  step14.out 2>&1 `;
 
 exit;
 
