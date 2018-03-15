@@ -14,7 +14,7 @@ for(my $i=0; $i<@list; $i++) {
 chomp $list[$i];
 
 system("clear");
-print BLUE, $i, '/', (scalar @list), RESET, "\n";
+print BLUE, ($i+1), '/', (scalar @list), RESET, "\n";
 print RED, $list[$i], RESET, "\n";
 my @line = split('_', $list[$i]);
 #print $line[1], "\n";
