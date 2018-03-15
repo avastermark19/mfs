@@ -101,9 +101,9 @@ $known{'CL0182'}=1;
 $known{'CL0181'}=1;
 $known{'CL0241'}=1;
 
-if ( scalar @TOPCONS > $MIN_TMS ) { 
-
 my $clan_id = (split(' ', ` grep '$MemList[$j]' Pfam-A.clans.tsv `))[1];
+
+if ( scalar @TOPCONS > $MIN_TMS ) { 
 
 print GREEN, $clan_id, "\t", RESET;
 
