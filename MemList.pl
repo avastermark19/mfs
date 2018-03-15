@@ -55,7 +55,7 @@ print STDERR BLUE, $name, RESET, "\t";
 my @python = split ( ' ', ` python topcons2_wsdl.py -m submit -seq sample.txt ` );
 print STDERR BLUE $python[11], RESET "\n";
  $hash{$line[0]} = $python[11];
-
+` rm -f sample.txt `;
 #exit;
 
 ` rm -f format\\?format\\=fasta\\&alnType\\=seed\\&order\\=t\\&case\\=l\\&gaps\\=none\\&download\\=1  `;
