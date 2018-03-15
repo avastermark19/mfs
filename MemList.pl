@@ -6,7 +6,7 @@ system("clear;");
 
 #################################################
 my $MIN_TMS    = 5;
-my $MIN_FAMILY = 10;
+my $MIN_FAMILY = 5;
 #################################################
 
 ` ./ClanTester.pl $MIN_FAMILY > ClanTester.out `;
