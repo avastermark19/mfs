@@ -132,7 +132,7 @@ my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
 print "\n";
 
 }
-else { print ' print GREEN, $clan_id, "\n", RESET; }
+else { print GREEN, $clan_id, "\n", RESET; }
 
 }
 

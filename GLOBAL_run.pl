@@ -9,6 +9,7 @@ $input[2] = $ARGV[2];
 $input[3] = $ARGV[3];
 $input[4] = $ARGV[4];
 $input[5] = $ARGV[5];
+print "@input\n";
 goto die7;
 }
 
