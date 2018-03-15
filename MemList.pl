@@ -125,7 +125,7 @@ print "\n";
 my $outdir = 'BACKUP_'.$clan_id;
 ` rm -f $outdir `;
 ` mkdir $outdir `;
-` cp -r TOPCONS/ $outdir/ `;
+` cp -r TOPCONS/* $outdir/ `;
 
 }
 
