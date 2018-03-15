@@ -38,6 +38,12 @@ $A++;
 my @score = split(' ', ` grep -A 3 "^Command" CLUSTER/$DIR/HHALIGN/$DIR2.hhalign | tail -n 1 `);
 print STDERR $score[5], RESET, "\t";
 if( $score[5] >= 1 ) { $score[5] = 10-log($score[5]); }  else { $score[5] = 10; } 
+print STDERR $score[5], RESET, "\t";
+
+my $name1 = (split('', $DIR))[0].(split('', $DIR))[1].(split('', $DIR))[2];
+my $name2 = (split('', $DIR2))[0].(split('', $DIR2))[1].(split('', $DIR2))[2];
+#print '_'.$name1.'_',"\n";
+if( $name1 eq $name2 ) { $score[5] /= 1.25; }
 print STDERR $score[5], RESET, "\n";
 
 $val .= $score[5].',';
