@@ -4,6 +4,9 @@ use strict;
 
 system("clear");
 
+print 'git clone https://github.com/avastermark19/mfs', "\n";
+print 'git status', "\n";
+
 my $internet = (split(' ', ` ping -c 1 goole.com `))[0];
 if($internet eq 'PING') { print ON_RED, 'Internet OK', RESET, "\n"; } else { print 'Check your internet connection', "\n"; exit; }
 
