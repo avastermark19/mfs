@@ -200,7 +200,8 @@ print STDERR 'Making final tree ... ', "\n";
 ` ./step4.pl > /dev/null 2>&1 `;
 
 print STDERR 'Displaying labels on tree ... ', "\n";
-my @output = ` ./step8.pl `;
+` ./step8.pl > step8.out `;
+my @output = ` cat step8.out `;
 
 print STDERR @output, "\n";
 
@@ -211,7 +212,10 @@ print STDERR 'Creating MRB input file ... ', "\n";
 
 print STDERR 'Testing monotopic vs. bitopic distribution ... ', "\n";
 ` ./step14.pl  2>  step14.out `;
-
+` ./step14.pl  2>  step14.out2 `;
+` ./step14.pl  2>  step14.out3 `;
+` ./step14.pl  2>  step14.out4 `;
+` ./step14.pl  2>  step14.out5 `;
 
 exit;
 

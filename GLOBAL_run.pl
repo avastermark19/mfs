@@ -1,6 +1,17 @@
 #! /usr/bin/perl -w
 use strict;
 
+my @input;
+if( $ARGV[0] and $ARGV[1] and $ARGV[2] and $ARGV[3] and $ARGV[4] and $ARGV[5] ) {
+$input[0] = $ARGV[0];
+$input[1] = $ARGV[1];
+$input[2] = $ARGV[2];
+$input[3] = $ARGV[3];
+$input[4] = $ARGV[4];
+$input[5] = $ARGV[5];
+goto die7;
+}
+
 my $ps = `ps | wc -l `;
 if($ps != 6) { print '$ps='.$ps. ' ; kill %', "\n"; exit; }
 
@@ -24,7 +35,6 @@ print '    1. ABC_membrane (CL0241), maybe 2
    ( 7. ) PTS_EIIC (CL0493), maybe 5
     8. RND permease (CL0322), maybe 6', "\n";
 
-my @input;
 
 DIE1:
 print STDERR "[ CL0062=APC, CL0184=DMT, CL0064=CPA_AT, CL0015=MFS ]\n";
@@ -82,6 +92,7 @@ chomp $input[5];
 if($input[5] eq '') { $input[5] = 5;}
 if($input[5] != 2) { if($input[5] != 3) { if($input[5] != 5) { goto die6; } } }
 
+die7:
 print 'The current settings are : ', $input[0], ' ', $input[1], ' ', $input[2], ' [', $input[3], ' ', $input[4], ' ', $input[5], ']',"\n";
 print 'Typical settings could be: MFS 6 2 [12 6 5]', "\n";
 print "\n";

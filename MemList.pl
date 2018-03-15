@@ -122,7 +122,7 @@ print "\n";
 ` ./step1.pl $clan_id `;
 ` ./step2.pl `;
 
-my $outdir = 'BACKUP_'.$clan_id;
+my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
 ` rm -f $outdir `;
 ` mkdir $outdir `;
 ` cp -r TOPCONS/* $outdir/ `;
