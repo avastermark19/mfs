@@ -89,7 +89,7 @@ chomp $MemList[$j];
 my @TOPCONS = split('M+', ` grep -A 1 '^TOPCONS' MemList/$MemList[$j]/query.result.txt | tail -n 1 `);
 shift(@TOPCONS);
 
-%known;
+my %known;
 $known{'CL0062'}=1;
 $known{'CL0184'}=1;
 $known{'CL0064'}=1;
@@ -117,6 +117,15 @@ my $half_SPACE ;
 if (0 == $SPACE % 2) { $half_SPACE = $SPACE/2; } else { $half_SPACE = ($SPACE-1)/2; }
 
 print YELLOW, $MemList[$j], ' ', $SPACE, ' ', $half_SPACE, RESET; # STDOUT
+
+print "\n";
+` ./step1.pl $clan_id `;
+` ./step2.pl `;
+
+my $outdir = 'BACKUP_'.$clan_id;
+` rm -f $outdir `;
+` mkdir $outdir `;
+` cp -r TOPCONS/ $outdir/ `;
 
 }
 
