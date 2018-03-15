@@ -2,6 +2,8 @@
 use strict;
  use Term::ANSIColor qw(:constants);
 
+system("clear");
+
 ` ./step18.pl `; # MemList
 
 system("clear");
