@@ -2,6 +2,8 @@
 use strict;
  use Term::ANSIColor qw(:constants);
 
+` ./step18.pl `; # MemList
+
 system("clear");
 
 ` rm -rf BatchControl `;
