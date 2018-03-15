@@ -2,6 +2,8 @@
 use strict;
   use Term::ANSIColor qw(:constants);
 
+# formerly MemList
+
 system("clear;");
 
 #################################################
