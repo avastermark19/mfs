@@ -38,6 +38,7 @@ system(" ./GLOBAL_run.pl $line[1] $line[2] 4 5 3 2 ");
  
 }
 
+` rm -f step17.out `;
 
 exit;
 
