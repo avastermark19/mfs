@@ -38,7 +38,7 @@ do {
 if($counter) {print "\b\b\b\b\b\b\b\b-> =", int(100*((keys %hash)/$counter)), '% ';}
 while( my( $key, $value ) = each %hash ){ # key is name, value is jobid
 my @python = split (' ',  ` python topcons2_wsdl.py -m get -jobid $value `);
-if ($python[6] ne 'not') { ` unzip $value.zip `; ` rm -f $value.zip `; ` mv $value TOPCONS/$key `; delete $hash{$key}; }
+if ($python[6] ne 'not') { ` unzip $value.zip > /dev/null 2>&1 `; ` rm -f $value.zip `; ` mv $value TOPCONS/$key `; delete $hash{$key}; }
 } 
 } while ( keys %hash > 0 );
 if($counter){print "\n";}
