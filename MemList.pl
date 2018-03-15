@@ -6,7 +6,7 @@ system("clear;");
 
 #################################################
 my $MIN_TMS    = 5;
-my $MIN_FAMILY = 5;
+my $MIN_FAMILY = 10;
 #################################################
 
 ` ./ClanTester.pl $MIN_FAMILY > ClanTester.out `;
@@ -132,6 +132,7 @@ my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
 print "\n";
 
 }
+else { print ' print GREEN, $clan_id, "\n", RESET; }
 
 }
 
