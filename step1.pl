@@ -2,13 +2,15 @@
 use strict;
   use Term::ANSIColor qw(:constants);
 
+my $clan;
+
+if($ARGV[0]) { $clan = $ARGV[0]; } else { $clan = upcase_in(1); }
+
 # FILES NEEDED
 # -rw-r--r-- 1 aake aake     963417 dec  4 11:00 Pfam-A.clans.tsv
 # -rw-r--r-- 1 aake aake 1372159421 dec  4 10:55 Pfam-A.hmm
 # -rw-r--r-- 1 aake aake  268833358 dec  4 10:47 uniprot_sprot.fasta (ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz)
-
 #PARAMETER
-my $clan = upcase_in(1);
 
 if ( ` cat Pfam-A.clans.tsv | awk '\$2 == \"$clan\"' `  ) {} else { print 'warning: INVALID CLAN', "\n"; exit; }
 
