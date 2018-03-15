@@ -135,6 +135,8 @@ print "\n";
 
 }
 
+` rm -rf MemList; `;
+
 exit;
 
 
