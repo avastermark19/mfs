@@ -203,7 +203,7 @@ print STDERR 'Displaying labels on tree ... ', "\n";
 ` ./step8.pl > step8.out `;
 my @output = ` cat step8.out `;
 
-print STDERR @output, "\n";
+#print STDERR @output, "\n";
 
 ###########################################################################################
 
