@@ -36,9 +36,16 @@ system(" ./GLOBAL_run.pl $line[1] $line[2] 4 5 3 2 ");
 
 
  
-}
 
 ` rm -f step17.out `;
+#################################### REPRINTING OPS
+` ./LOCAL_run.pl ynnnn `; 
+` rm -f *.out `;
+`  rm -rf BACKUP_CONS `;
+` rm -f domtblout.txt `;
+` rm -f step11b.out `;
+` rm -f step9.out `;
+}
 
 exit;
 
