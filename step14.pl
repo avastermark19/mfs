@@ -61,7 +61,7 @@ print FILE1 '#plot(mixmdl,which=2)', "\n";
 
 close(FILE1);
 
-print ON_RED 'finite Gaussian mixture distribution', RESET, "\n";
+print 'finite Gaussian mixture distribution', "\n";
 
 print (` R --vanilla < test1.r | grep -A 10 'lambda' `);
 
@@ -78,7 +78,7 @@ print (` R --vanilla < test1.r | grep -A 10 'lambda' `);
 
 #######################################################
 
-print ON_GREEN 'fit a single Gaussian using non-linear least squares', RESET, "\n";
+print 'fit a single Gaussian using non-linear least squares', "\n";
 
 open(FILE2, ">test2.r");
 
@@ -111,10 +111,10 @@ print (` R --vanilla < test2.r | grep -A 8 'Nonlinear' `);
 
 #######################################################
 
-print ON_BLUE 'residual sum-of-squares: 0.1051 (a good fit for the single Gaussian)', RESET, "\n";
-print ON_BLUE 'residual sum-of-squares: 0.6554 (BAD)', RESET, "\n";
+print 'residual sum-of-squares: 0.1051 (a good fit for the single Gaussian)', "\n";
+print 'residual sum-of-squares: 0.6554 (BAD)', "\n";
 
-print ON_YELLOW 'A distribution is considered to have a double peak if the following applies: 1) the bitopic Gaussian fits better than the monotopic Gaussian (lower χ2-value), 2) the μ-values of the bitopic Gaussian differ more than 2.5, 3) the σ-values of the bitopic Gaussian are lower than 0.7 and 4) the TM-segment frequency corresponding to the peaks of the bitopic Gaussian are greater than 0.05', RESET, "\n";
+print 'A distribution is considered to have a double peak if the following applies: 1) the bitopic Gaussian fits better than the monotopic Gaussian (lower χ2-value), 2) the μ-values of the bitopic Gaussian differ more than 2.5, 3) the σ-values of the bitopic Gaussian are lower than 0.7 and 4) the TM-segment frequency corresponding to the peaks of the bitopic Gaussian are greater than 0.05', "\n";
 
 print 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3009398/figure/fig06/', "\n";
 
