@@ -4,11 +4,12 @@ use strict;
 
 # formerly MemList
 
+if($ARGV[0] and $ARGV[1]) {
 system("clear;");
 
 #################################################
-my $MIN_TMS    = 5;
-my $MIN_FAMILY = 10;
+my $MIN_TMS    = $ARGV[0];
+my $MIN_FAMILY = $ARGV[1];
 #################################################
 
 ` ./step17.pl $MIN_FAMILY > step17.out `;
@@ -141,6 +142,8 @@ else { print GREEN, $clan_id, "\n", RESET; }
 }
 
 ` rm -rf MemList; `;
+
+} else { print 'ARGV', "\n"; }
 
 exit;
 

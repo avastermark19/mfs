@@ -2,9 +2,14 @@
 use strict;
  use Term::ANSIColor qw(:constants);
 
+################################
+my $MIN_TMS = 5;
+my $MIN_FAM = 5;
+################################
+
 system("clear");
 
-` ./step18.pl `; # MemList
+` ./step18.pl $MIN_TMS $MIN_FAM`; # MemList
 
 system("clear");
 
