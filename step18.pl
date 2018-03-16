@@ -11,9 +11,9 @@ my $MIN_TMS    = 5;
 my $MIN_FAMILY = 5;
 #################################################
 
-` ./ClanTester.pl $MIN_FAMILY > ClanTester.out `;
+` ./step17.pl $MIN_FAMILY > step17.out `;
 
-my @list = ` cat ClanTester.out `;
+my @list = ` cat step17.out `;
 print STDERR RED, scalar @list, RESET, "\n";
 
 my %hash;
