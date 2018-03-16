@@ -8,7 +8,7 @@ system("clear;");
 
 #################################################
 my $MIN_TMS    = 5;
-my $MIN_FAMILY = 5;
+my $MIN_FAMILY = 15;
 #################################################
 
 ` ./step17.pl $MIN_FAMILY > step17.out `;
@@ -121,8 +121,10 @@ if (0 == $SPACE % 2) { $half_SPACE = $SPACE/2; } else { $half_SPACE = ($SPACE-1)
 print YELLOW, $MemList[$j], ' ', $SPACE, ' ', $half_SPACE, RESET; # STDOUT
 
 print "\n";
+
 ` ./step1.pl $clan_id `;
 ` ./step2.pl `;
+print "\n";
 
 my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
 ` rm -f $outdir `;
