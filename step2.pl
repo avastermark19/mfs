@@ -43,6 +43,7 @@ if ($python[6] ne 'not') { ` unzip $value.zip > /dev/null 2>&1 `; ` rm -f $value
 } while ( keys %hash > 0 );
 if($counter){print "\n";}
 ` rm -f seq.txt `;
+print STDERR "\n";
 exit;
   sub upcase_in { return (split(' ', ` head -n $_[0] config.file | tail -n 1 `))[1]; }
 
