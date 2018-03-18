@@ -1,7 +1,7 @@
 WhichClan1 MFS	
-$CUTOFF_UNSAFE 12    # USED TO BE 5 !! ( BUT THIS IS NOT THE ACTUAL -- SEE BELOW )
-$CUTOFF_TMS  5      # used to be 6  (could go down to 3 for APC...)
-$CUTOFF_MEMBERS  4  # used to be 5  (could go down to 2 for APC...)
+$CUTOFF_UNSAFE 5    # USED TO BE 5 !! ( BUT THIS IS NOT THE ACTUAL -- SEE BELOW )
+$CUTOFF_TMS  3      # used to be 6  (could go down to 3 for APC...)
+$CUTOFF_MEMBERS  2  # used to be 5  (could go down to 2 for APC...)
 $length 12    #from step6
 TOP_MET_COUNT 4    ## NOT READ FROM HERE CHANGE MANUALLY IN STEP3
 REPEAT_UNIT_SETTING 6
