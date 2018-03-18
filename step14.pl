@@ -4,7 +4,10 @@ use Term::ANSIColor qw(:constants);
 
 # R version 3.4.2 (2017-09-28) -- "Short Summer"
 
-my @dir = ` ls TOPCONS/ `;
+my @dir;
+if( $ARGV[0] ) { @dir = ` ls $ARGV[0]/ `; } else {
+@dir = ` ls TOPCONS/ `;
+}
 
 #print scalar @dir, "\n";
 
@@ -21,7 +24,12 @@ for(my $i=0; $i<@dir; $i++) {
 chomp $dir[$i];
 
 
-my @TOPCONS = split(/M+/, ` grep -A 1 '^TOPCONS ' TOPCONS/$dir[$i]/query.result.txt | tail -n 1 `);
+my @TOPCONS;
+if( $ARGV[0] ) { 
+@TOPCONS = split(/M+/, ` grep -A 1 '^TOPCONS ' $ARGV[0]/$dir[$i]/query.result.txt | tail -n 1 `);
+} else {
+@TOPCONS = split(/M+/, ` grep -A 1 '^TOPCONS ' TOPCONS/$dir[$i]/query.result.txt | tail -n 1 `);
+}
 
 #my @TOPCONS_Q = split('',    ` grep -A 1 '^TOPCONS '     CONS/$dir[$i]/seq_0/query.result.txt | tail -n 1 `);
 
