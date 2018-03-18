@@ -130,7 +130,7 @@ print "\n";
 # CHECK REPEAT UNIT CORRECTLY
 
 # your files are in TOPCONS/
-`./step14.pl TOPCONS > step14.out`
+`./step14.pl TOPCONS > step14.out`;
 my $TrueRepeat = `./BatchParser.pl 1 `;
 chomp $TrueRepeat;
 
