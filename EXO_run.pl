@@ -4,7 +4,7 @@ use strict;
 
 ################################
 my $MIN_TMS = 5;
-my $MIN_FAM = 5;
+my $MIN_FAM = 10; # if set to 5, 7 results.
 ################################
 
 system("clear");
