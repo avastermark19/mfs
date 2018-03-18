@@ -38,6 +38,29 @@ print '2+'.$template1.'+0+'.$template2.'+0', "\n";
 print '0+'.$template1.'+2+'.$template2.'+0', "\n";
 print '0+'.$template1.'+0+'.$template2.'+2', "\n";
 }
+
+# 3 extra
+if( $SPACE == $template1+$template2+3 ) {
+print '3+'.$template1.'+0+'.$template2.'+0', "\n";
+print '0+'.$template1.'+3+'.$template2.'+0', "\n";
+print '0+'.$template1.'+0+'.$template2.'+3', "\n";
+}
+
+# 4 extra
+if( $SPACE == $template1+$template2+3 ) {
+print '4+'.$template1.'+0+'.$template2.'+0', "\n";
+print '0+'.$template1.'+4+'.$template2.'+0', "\n";
+print '0+'.$template1.'+0+'.$template2.'+4', "\n";
+}
+
+# 5 extra
+if( $SPACE == $template1+$template2+3 ) {
+print '5+'.$template1.'+0+'.$template2.'+0', "\n";
+print '0+'.$template1.'+5+'.$template2.'+0', "\n";
+print '0+'.$template1.'+0+'.$template2.'+5', "\n";
+}
+
+
 if( $SPACE == $template1+$template2-1 ) {
 print '0+'.($template1-1).'+0+'.$template2.'+0', "\n";
 print '0+'.$template1.'+0+'.($template2-1).'+0', "\n";
