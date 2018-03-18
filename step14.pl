@@ -126,6 +126,8 @@ print 'A distribution is considered to have a double peak if the following appli
 
 print 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3009398/figure/fig06/', "\n";
 
+` rm -f *.r `;
+
 exit;
 
 
