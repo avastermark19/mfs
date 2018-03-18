@@ -11,7 +11,7 @@ if($ARGV[0] == 1) {
 } # THIS MODE WILL CHARACTERIZE ONLY THE STEP14.OUT IN HOME DIRECTORY
 # IF YOU DONT WANT TO RUN IN THIS MODE YOU HAVE TO PLACE A  2 (to run all in directory)
 
-system("clear");
+#system("clear");
 
 my @families;
 if( $ARGV[0] != 1) {

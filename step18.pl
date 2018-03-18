@@ -134,6 +134,8 @@ print "\n";
 my $TrueRepeat = `./BatchParser.pl 1 `;
 chomp $TrueRepeat;
 
+print 'TrueRepeat=', $TrueRepeat, "\n";
+
 ########################################################
 #my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
  my $outdir = 'BATCH_'.$clan_id.'_'.$TrueRepeat;
