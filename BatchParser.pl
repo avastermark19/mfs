@@ -9,7 +9,8 @@ if($ARGV[0] == 1) {
 } # THIS MODE WILL CHARACTERIZE ONLY THE STEP14.OUT IN HOME DIRECTORY
 # IF YOU DONT WANT TO RUN IN THIS MODE YOU HAVE TO PLACE A  2 (to run all in directory)
 
-#system("clear");
+if($ARGV[0] == 2) {system("clear");}
+
 
 my @families;
 if( $ARGV[0] != 1) {
@@ -119,10 +120,22 @@ if($ARGV[0] != 1) {
 
 my $mu0=0;
 my $mu1=0;
+my $mu3=0;
+
+my $mu0ap=0;
+my $mu1ap=0;
+my $mu3ap=0;
+
 my $F=0;
 my $M=0;
 my $E=0;
 
+my $F2=0;
+my $M2=0;
+my $E2=0;
+
+my $string='';
+my $string2='';
 
 my @tree = ` grep '___' BatchControl/$families[$i]/step8.out ` ;
 
@@ -136,8 +149,38 @@ my $tree_line = (split(' ', $tree[$j]))[1];
 my $tms = (split( '_', (split(/__/, $tree_line))[0]))[-1];
 print $tms, "\t";
 
-if( $tms == $mu[0] ) { $mu0++; }
-if( $tms == $mu[1] ) { $mu1++; }
+my $add='x';
+if( $tms ==   $mu[0] ) { $mu0++; $add = 'U'; }
+if( $tms ==  2* $mu[0]  ) { $mu1++; $add = 'D'; }
+if( $tms == 3*$mu[0] ) { $mu3++; $add ='T'; }
+$string .= $add;
+
+#print GREEN, ($tms / $mu[0]) , RESET, "\n";
+$add='x';
+if( ($tms / $mu[0]) < 1.3 and ($tms / $mu[0]) > 0.7 ) { $mu0ap++; $add = 'U'; }
+if( $tms /( 2* $mu[0]) < 1.3 and $tms /( 2* $mu[0]) > 0.7  ) { $mu1ap++; $add = 'D'; }
+if( $tms /( 3* $mu[0]) < 1.3 and $tms /( 3* $mu[0]) > 0.7  ) { $mu3ap++; $add = 'T'; }
+$string2 .= $add;
+
+my @on_yellow;
+if ($tree_line =~ /(-*(abc|a-bc|ab-c)(\w|-)*)/) {
+#print ON_YELLOW, $1, RESET, "\n";
+ @on_yellow = split('', $1);
+}
+
+my $mega_k=0;
+my $mega_n=0;
+for (my $k=0; $k<@on_yellow; $k++) {
+if($on_yellow[$k] eq '-') { $mega_k+= $k; $mega_n++; }
+}
+if( $mega_n>0) {
+#print GREEN, ($mega_k/$mega_n)/(scalar @on_yellow), RESET, "\n";
+my $loc = ($mega_k/$mega_n)/(scalar @on_yellow);
+if( $loc < 0.33 ) { $F2++; } else {
+if( $loc > 0.66 ) { $E2++; } else { $M2++; }
+}
+
+}
 
 if ($tree_line =~ /(\d\+\d\+\d\+\d\+\d)/ ) {
 my @dist = split(/\+/, $1);
@@ -149,10 +192,38 @@ if( $dist[4] > 0 ) { $E++; }
 }
 print "\n";
 
-print 'SINGLE UNITS: ', round(100*$mu0/(scalar @tree)), "%\n";
-print ' DUP   UNITS: ', round(100*$mu1/(scalar @tree)), "%\n";
+print 'SINGLE UNITS: ', round(100*$mu0/(scalar @tree)). '-'. round(100*$mu0ap/(scalar @tree)), "% [$mu0-$mu0ap]\n";
+print ' DUP   UNITS: ', round(100*$mu1/(scalar @tree)). '-'. round(100*$mu1ap/(scalar @tree)), "%\n";
+print ' TRI   UNITS: ', round(100*$mu3/(scalar @tree)). '-'. round(100*$mu3ap/(scalar @tree)),"%\n";
+print ' ATYPICALS  : ', 100-round(100*($mu0+$mu1+$mu3)/(scalar @tree)), "%\n";
 #print 'N:            ', scalar @tree, "\n";
-print 'F / M / E:    ', round(100*$F/(scalar @tree)). "%".' '.$M.' '.$E, "\n";
+print 'F / M / E   : ', round(100*$F/(scalar @tree)). "%".' '.round(100*$M/(scalar @tree)).'% '.round(100*$E/(scalar @tree)), "%\n";
+print 'F2/ M2/ E2  : ', $F2, ' ',$M2, ' ', $E2, "\n";
+print 'string      : ', $string, "\n";
+$string = lc($string);
+
+#` echo "awk -v RS='[a-z]' '{str=(++a[RT]==1?str RT: str)}END{print str}' <<< "$string" " > temp.awk `;
+#print 'string3     : ';
+#` chmod u+x temp.awk `;
+#` ./temp.awk `;
+
+#$string =~ s/(.)(?=.*?\1)//g;
+#print 'string      : ', $string, "\n";
+
+print 'RLC         : ';
+my $rlc='';
+my @sstring = split('', $string);
+for(my $l=1; $l<@sstring; $l++) {
+if($sstring[$l] ne $sstring[$l-1]) {
+$rlc .= $sstring[$l];
+}
+}
+print $rlc;
+print "\t", round(100*length($rlc)/length($string)).'%';
+print "\n";
+
+print 'string2     : ', lc($string2), "\n";
+print "\n";
 }
 
 #####################################################################
