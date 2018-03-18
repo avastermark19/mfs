@@ -3,8 +3,6 @@ use strict;
  use Term::ANSIColor qw(:constants);
 use Math::Round;
 
-# JudgmentalSoft #
-
 if($ARGV[0]) {} else { print 'ARGV', "\n"; exit; }
 
 if($ARGV[0] == 1) {
@@ -118,6 +116,14 @@ print "\n";
 
 #####################################################################
 if($ARGV[0] != 1) {
+
+my $mu0=0;
+my $mu1=0;
+my $F=0;
+my $M=0;
+my $E=0;
+
+
 my @tree = ` grep '___' BatchControl/$families[$i]/step8.out ` ;
 
 #print "@tree\n";
@@ -125,11 +131,30 @@ my @tree = ` grep '___' BatchControl/$families[$i]/step8.out ` ;
 for(my $j=0; $j<@tree; $j++) {
 chomp $tree[$j];
 my $tree_line = (split(' ', $tree[$j]))[1];
-print $tree_line, "\n";
+#print $tree_line, "\n";
+
+my $tms = (split( '_', (split(/__/, $tree_line))[0]))[-1];
+print $tms, "\t";
+
+if( $tms == $mu[0] ) { $mu0++; }
+if( $tms == $mu[1] ) { $mu1++; }
+
+if ($tree_line =~ /(\d\+\d\+\d\+\d\+\d)/ ) {
+my @dist = split(/\+/, $1);
+print RED, $dist[0], ' ', $dist[2], ' ', $dist[4], RESET, "\n";
+if( $dist[0] > 0 ) { $F++; }
+if( $dist[2] > 0 ) { $M++; }
+if( $dist[4] > 0 ) { $E++; }
+} else { print "\n"; }
+}
+print "\n";
+
+print 'SINGLE UNITS: ', round(100*$mu0/(scalar @tree)), "%\n";
+print ' DUP   UNITS: ', round(100*$mu1/(scalar @tree)), "%\n";
+#print 'N:            ', scalar @tree, "\n";
+print 'F / M / E:    ', round(100*$F/(scalar @tree)). "%".' '.$M.' '.$E, "\n";
 }
 
-print "\n";
-}
 #####################################################################
 
 }
