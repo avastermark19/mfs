@@ -126,8 +126,17 @@ print "\n";
 ` ./step1.pl $clan_id `;
 ` ./step2.pl `;
 print "\n";
+########################################################
+# CHECK REPEAT UNIT CORRECTLY
 
-my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
+# your files are in TOPCONS/
+`./step14.pl TOPCONS > step14.out`
+my $TrueRepeat = `./BatchParser.pl 1 `;
+chomp $TrueRepeat;
+
+########################################################
+#my $outdir = 'BATCH_'.$clan_id.'_'.$half_SPACE;
+ my $outdir = 'BATCH_'.$clan_id.'_'.$TrueRepeat;
 ` rm -f $outdir `;
 ` mkdir $outdir `;
 ` cp -r TOPCONS/* $outdir/ `;
