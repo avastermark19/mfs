@@ -197,7 +197,7 @@ print ' DUP   UNITS: ', round(100*$mu1/(scalar @tree)). '-'. round(100*$mu1ap/(s
 print ' TRI   UNITS: ', round(100*$mu3/(scalar @tree)). '-'. round(100*$mu3ap/(scalar @tree)),"%\n";
 print ' ATYPICALS  : ', 100-round(100*($mu0+$mu1+$mu3)/(scalar @tree)), "%\n";
 #print 'N:            ', scalar @tree, "\n";
-print 'F / M / E   : ', round(100*$F/(scalar @tree)). "%".' '.round(100*$M/(scalar @tree)).'% '.round(100*$E/(scalar @tree)), "%\n";
+#print 'F / M / E   : ', round(100*$F/(scalar @tree)). "%".' '.round(100*$M/(scalar @tree)).'% '.round(100*$E/(scalar @tree)), "%\n";
 print 'F2/ M2/ E2  : ', $F2, ' ',$M2, ' ', $E2, "\n";
 print 'string      : ', $string, "\n";
 $string = lc($string);
