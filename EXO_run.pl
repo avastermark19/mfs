@@ -16,7 +16,7 @@ system("clear");
 ` rm -rf BATCH `;
 ` mkdir BATCH `;
 
-my @list = ` ls -d BATCH_* > /dev/null 2>&1 `;
+my @list = ` ls -d BATCH_* 2> /dev/null  `;
 if( @list < 1) { print ' No matches ... ', "\n"; exit; }
 #print BLUE, scalar @list, RESET, "\n";
 
