@@ -178,6 +178,13 @@ close(FILE);
 
 if (@ARGV < 1) { # no commands , you are running in release mode
 ` ./LOCAL_run.pl nyyyy `;
+` ./LOCAL_run.pl ynnnn `;
+` rm -f step11b.out `;
+` rm -f step9.out `;
+` rm -f domtblout.txt `;
+` rm -f CL0015.hmm `;
+` rm -rf BACKUP `;
+` rm -rf BACKUP_CONS `;
 } else { # commands, you are running in EXO mode
  ` ./LOCAL_run.pl nynyy `;
 }
