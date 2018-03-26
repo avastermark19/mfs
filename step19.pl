@@ -164,6 +164,8 @@ print GREEN, $TOPCONS, RESET, "\n";
 
 system (" ./step20.pl ");
 
+system (" ./step21.pl ");
+
 exit;
 
 
