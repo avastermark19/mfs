@@ -24,6 +24,9 @@ print RED, '.', RESET, "\n";
 print BLUE, 'Unpacking... ', "\n", RESET;
 ` gunzip *.gz; `;
 
+if( -e "Pfam-A.clans.tsv" ) {} else { print ' Pfam file 1 missing ', "\n"; exit; }
+if( -e "Pfam-A.hmm" ) {} else { print ' Pfam file 2 missing ', "\n"; exit; }
+
 DIE1:
 
 ` chmod u+x *.pl `;
