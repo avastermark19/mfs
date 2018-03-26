@@ -13,8 +13,8 @@ system("clear");
 
 system("clear");
 
-` rm -rf BatchControl `;
-` mkdir BatchControl `;
+` rm -rf BATCH `;
+` mkdir BATCH `;
 
 my @list = ` ls -d BATCH_* `;
 #print BLUE, scalar @list, RESET, "\n";
@@ -35,9 +35,9 @@ my @line = split('_', $list[$i]);
 
 system(" ./GLOBAL_run.pl $line[1] $line[2] 4 5 3 2 ");
 
-` mkdir BatchControl/$list[$i] `;
-` mv step8.out BatchControl/$list[$i] `;
-` mv step14.out BatchControl/$list[$i] `;
+` mkdir BATCH/$list[$i] `;
+` mv step8.out BATCH/$list[$i] `;
+` mv step14.out BATCH/$list[$i] `;
 
 
  

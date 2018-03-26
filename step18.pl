@@ -132,7 +132,7 @@ print "\n";
 
 # your files are in TOPCONS/
 `./step14.pl TOPCONS > step14.out`;
-my $TrueRepeat = `./BatchParser.pl 1 `;
+my $TrueRepeat = `./MAKE_report.pl 1 `;
 chomp $TrueRepeat;
 
 print 'TrueRepeat=', $TrueRepeat, "\n";

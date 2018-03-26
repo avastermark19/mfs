@@ -13,6 +13,10 @@ print "@input\n";
 goto die7;
 }
 
+if (@ARGV < 1) { # no commands , you are running in release mode
+print 'no commands , you are running in release mode', "\n";
+}
+
 my $ps = `ps | wc -l `;
 if($ps != 6) { print '$ps='.$ps. ' ; kill %', "\n"; exit; }
 
@@ -113,6 +117,10 @@ print "\n";
 #################################### SPECIAL DELETION CURRENTLY OFF, SHOULD BE ON IN DELIVERED VERSION
 #` rm -rf BACKUP/ `; 
 
+if (@ARGV < 1) { # no commands , you are running in release mode
+` rm -rf BACKUP/ `;
+}
+
 ####################################
 
 #################################### REPRINTING
@@ -167,7 +175,13 @@ close(FILE);
 
 #################################### REPRINTING
 
- ` ./LOCAL_run.pl nynyy `; ## THIS IS A SPECIAL NON RELEASED SETTING WHERE YOU DO NOT RUN TOPCONS-- FOR TESTING ONLY
+if (@ARGV < 1) { # no commands , you are running in release mode
+` ./LOCAL_run.pl nyyyy `;
+} else { # commands, you are running in EXO mode
+ ` ./LOCAL_run.pl nynyy `;
+}
+
+# ` ./LOCAL_run.pl nynyy `; ## THIS IS A SPECIAL NON RELEASED SETTING WHERE YOU DO NOT RUN TOPCONS-- FOR TESTING ONLY
 #` ./LOCAL_run.pl nyyyy `; ## THIS IS FOR THE END USER
 
 ####################################
