@@ -1,92 +1,75 @@
-#! /usr/bin/perl -w 
+#! /usr/bin/perl -w
 use strict;
 use Data::Dumper;
  use Term::ANSIColor qw(:constants);
 
-` rm -f EC_MP_PPI_unfiltered_raw_Apr11-2017.txt `;
-` rm -f ecoli.txt `;
+my $HELIX_LENGTH = 10;
 
-print RED, "Downloading .";
-` wget -nc -q "https://www.uniprot.org/docs/ecoli.txt" `;
-print RED, '.';
-` wget -nc -q "http://ecoli.med.utoronto.ca/membrane/php/data/Babu_et_al_2017_Ecoli_CEP_PPI_APMS_data.zip" `;
-print RED, '.';
-print RESET, "\n";
-
-` unzip Babu_et_al_2017_Ecoli_CEP_PPI_APMS_data.zip `;
-` rm -f README `;
-` rm -f Babu_et_al_2017_Ecoli_CEP_PPI_APMS_data.zip `;
-` rm -f EC_MP_WT_PPI_unfiltered_raw_Apr11-2017.txt `;
-
-` rm -f *.phr `;
-` rm -f *.pin `;
-` rm -f *.psq `;
-
-if( -e "uniprot_sprot.fasta" ) {
-print RED, "Building DB ...";
-` makeblastdb -in uniprot_sprot.fasta -dbtype 'prot' `;
-} else { print 'uniprot_sprot.fasta missing...', "\n"; exit; }
-print RESET, "\n";
-
-my $target = ` ls LOOP/*.substr `;
+my $target = ` ls -d LOOP/*/ `;
 chomp $target;
 print GREEN, '_'.$target.'_', RESET, "\n";
 
-my $wc = ` cat $target | wc -l `;
-chomp $wc;
-#print $wc, "\n";
-for(my $j=1; $j<$wc+1; $j++) {
-` head -n $j $target | tail -n 1 > temp.seq `;
+my $SEQ     = ` grep -A 1 '^Sequence:' $target/query.result.txt | tail -n 1`;
 
-my @hits = ` blastall -p blastp -i temp.seq -d uniprot_sprot.fasta -m 8 -e 1000 | grep 'ECOLI' `;
-#print BLUE, "@hits\n", RESET;
+chomp $SEQ;
+#print $SEQ, "\n";
 
-print "@@@@@@@@@@@@@@@@@@@@@@\n LOOP $j \n@@@@@@@@@@@@@@@@@@@@@@\n";
+my $TOPCONS = ` grep -A 1 '^TOPCONS ' $target/query.result.txt | tail -n 1`;
+chomp $TOPCONS;
 
-for(my $i=0; $i<@hits; $i++) {
-my $id  = (split(/\s|\|/, $hits[$i]))[3];
-print $id, "\t";
+#$TOPCONS = 'M'.$TOPCONS.'M';
 
-my $b_number = (split( /\s|;/, ` grep '$id' ecoli.txt ` ))[0];
-print $b_number, "\n";
+#print $TOPCONS, "\n";
 
-my @interactants = ` grep '$b_number' EC_MP_PPI_unfiltered_raw_Apr11-2017.txt | head -n 1 `;
+$TOPCONS =~ s/M/m/g;
 
-my %hash;
-%hash=();
-undef %hash;
+#print $TOPCONS, "\n";
 
-for(my $k=0; $k<@interactants; $k++) {
-my $interactant_1 =  (split( /\s|_/, $interactants[$k] ))[4] ;
-my $interactant_2 =  (split( /\s|_/, $interactants[$k] ))[7] ;
+my @TMS_ARRAY;
+my $TMS_NUMBER=0;
 
-if ( $interactant_1 ne $b_number ) { $hash{$interactant_1}++; }
-if ( $interactant_2 ne $b_number ) { $hash{$interactant_2}++; }
+for(my $i=0; $i<split('', $SEQ); $i++) {
 
-#print GREEN, '_'.$interactant_1.'_', RESET, "-";
-#print GREEN, '_'.$interactant_2.'_', RESET, "\n";
+if( (split('', $TOPCONS))[$i] eq 'm' 
+ or   ( (split('', $TOPCONS))[$i+1] and  (split('', $TOPCONS))[$i+1] eq 'm' ) 
+ or   ( (split('', $TOPCONS))[$i-1] and  (split('', $TOPCONS))[$i-1] eq 'm' )
 
+
+ ) {
+$TMS_ARRAY[$TMS_NUMBER] .= (split('', $SEQ))[$i];
 }
 
-print Dumper(%hash), "\n";
-
+if( (split('', $TOPCONS))[$i-1] eq 'm' 
+and (split('', $TOPCONS))[$i  ] ne 'm' 
+) {
+$TMS_NUMBER++;
 }
 
 }
 
-` rm -f ecoli.txt `;
-` rm -f EC_MP_PPI_unfiltered_raw_Apr11-2017.txt `;
-` rm -f temp.seq `;
-` rm -f *.phr `;
-` rm -f *.pin `;
-` rm -f *.psq `;
+#print "@TMS_ARRAY\n";
 
-# http://ecoli.med.utoronto.ca/membrane/php/home.php
-# https://www.uniprot.org/docs/ecoli.txt
-# http://ecoli.med.utoronto.ca/membrane/php/data/Babu_et_al_2017_Ecoli_CEP_PPI_APMS_data.zip
-# aake@ae17a:~/clone30/mfs$ blastall -p blastp -i SV2A.substr -d uniprot_sprot.fasta -m 8 -e 1000 | grep 'ECOLI'
-# aake@ae17a:~/clone30/mfs$ makeblastdb -in uniprot_sprot.fasta -dbtype 'prot'
+for( my $j=0; $j<@TMS_ARRAY; $j++ ) {
 
+print RED, 'TMS'.($j+1), "\t";
+
+my @matches = (substr $TMS_ARRAY[$j], 0, 2) =~ m/(D|E)/g;
+my @matches2= (substr $TMS_ARRAY[$j], 0, 2) =~ m/(K|R)/g;
+
+my @matches3= (substr $TMS_ARRAY[$j], 20, 2) =~ m/(D|E)/g;
+my @matches4= (substr $TMS_ARRAY[$j], 20, 2) =~ m/(K|R)/g;
+
+print BLUE, "@matches\t";
+print GREEN, "@matches2\t";
+
+print ( RED, (substr $TMS_ARRAY[$j], 0, 1) , RESET, "");
+print ( (substr $TMS_ARRAY[$j], 1, -2) , RESET, "");
+print ( RED, (substr $TMS_ARRAY[$j], -2, 1) , RESET, "\t");
+
+print BLUE,  "@matches3\t";
+print GREEN, "@matches4\n";
+
+}
 
 exit;
 
