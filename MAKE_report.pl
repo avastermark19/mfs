@@ -3,7 +3,7 @@ use strict;
  use Term::ANSIColor qw(:constants);
 use Math::Round;
 
-if($ARGV[0]) {} else { print 'ARGV', "\n"; exit; }
+if($ARGV[0]) {} else { print 'ARGV; use option '2' to analyze results of EXO run... ', "\n"; exit; }
 
 if($ARGV[0] == 1) {
 } # THIS MODE WILL CHARACTERIZE ONLY THE STEP14.OUT IN HOME DIRECTORY
