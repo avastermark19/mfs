@@ -4,7 +4,7 @@ use strict;
 
 ################################
 my $MIN_TMS = 5;
-my $MIN_FAM = 10; # if set to 5, 7 results.
+my $MIN_FAM = 15; # if set to 5, 7 results.
 ################################
 
 system("clear");
@@ -16,7 +16,8 @@ system("clear");
 ` rm -rf BATCH `;
 ` mkdir BATCH `;
 
-my @list = ` ls -d BATCH_* `;
+my @list = ` ls -d BATCH_* > /dev/null 2>&1 `;
+if( @list < 1) { print ' No matches ... ', "\n"; exit; }
 #print BLUE, scalar @list, RESET, "\n";
 
 for(my $i=0; $i<@list; $i++) {
