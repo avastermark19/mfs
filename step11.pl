@@ -91,16 +91,20 @@ if($block==0 and $index > $START_POINT+$REPEAT_LENGTH+$split_MODEL[2] and $index
 #print YELLOW, $output, RESET, "\n";
 #print ON_YELLOW, $tail, RESET, "\n";
 
-` echo '>temp' > temp.fa `;
-` echo $output >> temp.fa `;
-
 ` echo '>temp' > tail.fa `;
-` echo $tail >> tail.fa `;
+` echo $output >> tail.fa `;
 
+` echo '>temp' > temp.fa `;
+` echo $tail >> temp.fa `;
+
+# NOTE: The order or tail and temp above has been switched around due to problem with bias of putting extra TMSs in first slot too much ##
+
+#exit;
 
 ######################################################################################
 
  ` jackhmmer --chkhmm REPEAT/$MODEL[$loop].$FAMILY.hmm --fast --F1 1e-150 --F2 1e-150 --F3 1e-150 --incdomE 1e-150 --incE 1e-150 -E 1e-150 --domE 1e-150 --noali -N 5 temp.fa uniprot_sprot.fasta `;
+#  ` jackhmmer --chkhmm REPEAT/$MODEL[$loop].$FAMILY.hmm --fast --F1 1e-150 --F2 1e-150 --F3 1e-150 --incdomE 1e-150 --incE 1e-150 -E 1e-150 --domE 1e-150 --noali -N 5 tail.fa uniprot_sprot.fasta `;
 
 ######################################################################################
 
@@ -123,6 +127,7 @@ goto DIE1;
 ` echo '>temp' > temp.fa `;
 my $seq = join('',@SEQUENCE);
 ` echo $seq >> temp.fa `;
+#exit;
 
 ######################################################################################
 
