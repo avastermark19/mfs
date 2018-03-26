@@ -43,15 +43,16 @@ print '    1. ABC_membrane (CL0241), maybe 2
 
 DIE1:
 print STDERR "[ CL0062=APC, CL0184=DMT, CL0064=CPA_AT, CL0015=MFS ]\n";
-print STDERR "Do you want to RESET ONLY (CL0062,,default=MFS): ";
+print STDERR "Do you want to RESET ONLY (CL0062,,default=CL0015): ";
  $input[0] = <STDIN>;
 chomp $input[0];
 $input[0] =uc ($input[0]);
 if($input[0] eq '') { $input[0] = 'CL0015';}
+
 if($input[0] ne 'CL0015') { if($input[0] ne 'CL0184') { if($input[0] ne 'CL0062') { if($input[0] ne 'CL0064') { 
 if($input[0] ne 'CL0241') { if($input[0] ne 'CL0181') { if($input[0] ne 'CL0182') { if($input[0] ne 'CL0430') { 
 if($input[0] ne 'CL0562') { if($input[0] ne 'CL0292') { if($input[0] ne 'CL0493') { if($input[0] ne 'CL0322') { 
-goto DIE1; 
+# goto DIE1;  # allow any family.
 } } } }
 } } } }
 } } } }
@@ -65,11 +66,11 @@ if($input[1] eq '') { $input[1] = 6;}
 if($input[1] != 4) { if($input[1] != 5) { if($input[1] != 6) { goto die2; } } }
 
 die3:
-print STDERR "Which level of TOPCONS granularity (e.g. 1,3,4 default=2) \t: ";
+print STDERR "Which level of TOPCONS granularity (e.g. 1,3,4 default=4) \t: ";
  $input[2] = <STDIN>;
 chomp $input[2];
 $input[2] =uc ($input[2]);
-if($input[2] eq '') { $input[2] = 2;}
+if($input[2] eq '') { $input[2] = 4;}
 if($input[2] != 1) { if($input[2] != 2) { if($input[2] != 3) { if($input[2] != 4 ) { goto die3; } } } }
 
 #$CUTOFF_UNSAFE 12    # USED TO BE 5 !! ( BUT THIS IS NOT THE ACTUAL -- SEE BELOW )
@@ -77,24 +78,24 @@ if($input[2] != 1) { if($input[2] != 2) { if($input[2] != 3) { if($input[2] != 4
 #$CUTOFF_MEMBERS  2  # used to be 5
 
 die4:
-print STDERR 'Which $CUTOFF_UNSAFE do you want (e.g. 5,6 default=12) ', "\t: ";
+print STDERR 'Which $CUTOFF_UNSAFE do you want (e.g. 5,6 default=5) ', "\t: ";
  $input[3] = <STDIN>;
 chomp $input[3];
-if($input[3] eq '') { $input[3] = 12;}
+if($input[3] eq '') { $input[3] = 5;}
 if($input[3] != 5) { if($input[3] != 6) { if($input[3] != 12) { goto die4; } } }
 
 die5: 
-print STDERR 'Which $CUTOFF_TMS do you want (e.g. 3,5 default=6) ', "\t: ";
+print STDERR 'Which $CUTOFF_TMS do you want (e.g. 3,5 default=3) ', "\t: ";
  $input[4] = <STDIN>;
 chomp $input[4];
-if($input[4] eq '') { $input[4] = 6;}
+if($input[4] eq '') { $input[4] = 3;}
 if($input[4] != 3) { if($input[4] != 5) { if($input[4] != 6) { goto die5; } } }
 
 die6:
-print STDERR 'Which $CUTOFF_MEMBERS do you want (e.g. 2,3 default=5) ', "\t:";
+print STDERR 'Which $CUTOFF_MEMBERS do you want (e.g. 2,3 default=2) ', "\t:";
  $input[5] = <STDIN>;
 chomp $input[5];
-if($input[5] eq '') { $input[5] = 5;}
+if($input[5] eq '') { $input[5] = 2;}
 if($input[5] != 2) { if($input[5] != 3) { if($input[5] != 5) { goto die6; } } }
 
 die7:
