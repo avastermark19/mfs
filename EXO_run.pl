@@ -4,7 +4,7 @@ use strict;
 
 ################################
 my $MIN_TMS = 5;
-my $MIN_FAM = 15; # if set to 5, 7 results.
+my $MIN_FAM = 15; # if set to 5, 7 results. -- these settings 5 and 15 give just one superfamily..
 ################################
 
 system("clear");
