@@ -2,7 +2,8 @@
 use strict;
 use Term::ANSIColor qw(:constants);
 
-` ./step5.pl > step5.out `;
+# ` ./step5.pl > step5.out `;
+` ./step5.pl `;
 
 ` rm -rf PDB/ `;
 ` mkdir PDB/ `;

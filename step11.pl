@@ -91,11 +91,11 @@ if($block==0 and $index > $START_POINT+$REPEAT_LENGTH+$split_MODEL[2] and $index
 #print YELLOW, $output, RESET, "\n";
 #print ON_YELLOW, $tail, RESET, "\n";
 
-` echo '>temp' > temp.fa `;
-` echo $output >> temp.fa `;
-
 ` echo '>temp' > tail.fa `;
-` echo $tail >> tail.fa `;
+` echo $output >> tail.fa `;
+
+` echo '>temp' > temp.fa `;
+` echo $tail >> temp.fa `;
 
 # NOTE: The order or tail and temp above has been switched around due to problem with bias of putting extra TMSs in first slot too much ##
 

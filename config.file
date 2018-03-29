@@ -1,4 +1,4 @@
-WhichClan1 MFS	
+WhichClan1 CL0064
 $CUTOFF_UNSAFE 5    # USED TO BE 5 !! ( BUT THIS IS NOT THE ACTUAL -- SEE BELOW )
 $CUTOFF_TMS  3      # used to be 6  (could go down to 3 for APC...)
 $CUTOFF_MEMBERS  2  # used to be 5  (could go down to 2 for APC...)
