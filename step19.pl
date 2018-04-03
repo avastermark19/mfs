@@ -71,7 +71,12 @@ print YELLOW, $c_number, ' -> ', RESET;
 my @hits1 = ` blastall -p blastp -i sample1.txt -d uniprot_sprot.fasta -m 8 -e 1000 | grep 'HUMAN' `;
 #print BLUE, "@hits1\n", RESET;
 my $HUMAN= (split(/\s|\|/, $hits1[0]))[5];
-print GREEN, $HUMAN, RESET, "\n";
+print GREEN, $HUMAN, RESET;
+
+my $name1 = (split(/OS=/, ` grep '$HUMAN' uniprot_sprot.fasta `))[0];
+my @name2 =  split( /\s/, $name1 );
+shift @name2; 
+print BRIGHT_CYAN, "\t(@name2)\n", RESET;
 
 }
 if ( $interactant_2 ne $b_number ) { $hash{$interactant_2}++; 
@@ -85,7 +90,12 @@ print RED, $c_number, ' -> ', RESET;
 my @hits1 = ` blastall -p blastp -i sample1.txt -d uniprot_sprot.fasta -m 8 -e 1000 | grep 'HUMAN' `;
 #print BLUE, "@hits1\n", RESET;
 my $HUMAN= (split(/\s|\|/, $hits1[0]))[5];
-print GREEN, $HUMAN, RESET, "\n";
+print GREEN, $HUMAN, RESET;
+
+my $name1 = (split(/OS=/, ` grep '$HUMAN' uniprot_sprot.fasta `))[0];
+my @name2 =  split( /\s/, $name1 );
+shift @name2;
+print BRIGHT_CYAN, "\t(@name2)\n", RESET;
 
 }
 
