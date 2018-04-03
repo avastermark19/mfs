@@ -45,10 +45,10 @@ print "@@@@@@@@@@@@@@@@@@@@@@\n LOOP $j \n@@@@@@@@@@@@@@@@@@@@@@\n";
 
 for(my $i=0; $i<@hits; $i++) {
 my $id  = (split(/\s|\|/, $hits[$i]))[3];
-print $id, "\t";
+#print 'ECOLI HOMOLOGUE OF LOOP: ', $id, "\t";
 
 my $b_number = (split( /\s|;/, ` grep '$id' ecoli.txt ` ))[0];
-print $b_number, "\n";
+print RED, $id, ' -> ', RESET;
 
 my @interactants = ` grep '$b_number' EC_MP_PPI_unfiltered_raw_Apr11-2017.txt | head -n 1 `;
 
@@ -60,21 +60,47 @@ for(my $k=0; $k<@interactants; $k++) {
 my $interactant_1 =  (split( /\s|_/, $interactants[$k] ))[4] ;
 my $interactant_2 =  (split( /\s|_/, $interactants[$k] ))[7] ;
 
-if ( $interactant_1 ne $b_number ) { $hash{$interactant_1}++; }
-if ( $interactant_2 ne $b_number ) { $hash{$interactant_2}++; }
+if ( $interactant_1 ne $b_number ) { $hash{$interactant_1}++; 
+
+my $c_number = (split( /\s+|;/, ` grep '$interactant_1' ecoli.txt ` ))[3];
+print YELLOW, $c_number, ' -> ', RESET;
+
+` sed -n -e '/$c_number/,/>/ p' uniprot_sprot.fasta > sample1.txt `;
+` sed -i '\$ d' sample1.txt `; # last line gone
+#` cat sample1.txt `;
+my @hits1 = ` blastall -p blastp -i sample1.txt -d uniprot_sprot.fasta -m 8 -e 1000 | grep 'HUMAN' `;
+#print BLUE, "@hits1\n", RESET;
+my $HUMAN= (split(/\s|\|/, $hits1[0]))[5];
+print GREEN, $HUMAN, RESET, "\n";
+
+}
+if ( $interactant_2 ne $b_number ) { $hash{$interactant_2}++; 
+
+my $c_number = (split( /\s+|;/, ` grep '$interactant_2' ecoli.txt ` ))[3];
+print RED, $c_number, ' -> ', RESET;
+
+` sed -n -e '/$c_number/,/>/ p' uniprot_sprot.fasta > sample1.txt `;
+` sed -i '\$ d' sample1.txt `; # last line gone
+#` cat sample1.txt `;
+my @hits1 = ` blastall -p blastp -i sample1.txt -d uniprot_sprot.fasta -m 8 -e 1000 | grep 'HUMAN' `;
+#print BLUE, "@hits1\n", RESET;
+my $HUMAN= (split(/\s|\|/, $hits1[0]))[5];
+print GREEN, $HUMAN, RESET, "\n";
+
+}
 
 #print GREEN, '_'.$interactant_1.'_', RESET, "-";
 #print GREEN, '_'.$interactant_2.'_', RESET, "\n";
 
 }
-
-print Dumper(%hash), "\n";
-
-}
+#print 'INTERACTANT OTHER NAME: ';
+#print Dumper(%hash), "\n";
 
 }
 
-` rm -f ecoli.txt `;
+}
+
+#` rm -f ecoli.txt `;
 ` rm -f EC_MP_PPI_unfiltered_raw_Apr11-2017.txt `;
 ` rm -f temp.seq `;
 ` rm -f *.phr `;
